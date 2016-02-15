@@ -23,6 +23,7 @@
 
 <ul class="nav nav-tabs">
 	 <li class="active"><a href="/rosters/{{ $type->id }}">All</a></li>
+
 	@foreach($levels as $level)
   <li><a href="/rosters/{{ $type->id }}/filter/{{$level['id']}}">{{$level['name']}}</a></li>
     @endforeach
@@ -30,6 +31,8 @@
 
 
 <br>
+    <div class="selected_level_id" style="display: none;"  >1</div>
+    <div class="selected_sport_id" style="display: none;"  >{{ $type->id }}</div>
 
                         <div class="panel panel-primary">
                             <div class="table-responsive">

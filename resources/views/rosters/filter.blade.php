@@ -27,6 +27,7 @@
 @foreach($levels as $level)	
   @if ($level['id'] === $lev['id'])
      <li class="active"><a href="/rosters/{{ $type->id }}/filter/{{  $level['id']}}">{{ $level['name']}}</a></li>
+            <div class="selected_level_id" style="display: none;"  >{{ $level['id']}}</div>
        @else
   <li><a href="/rosters/{{ $type->id }}/filter/{{  $level['id']}}">{{ $level['name']}}</a></li>
   @endif
@@ -34,6 +35,7 @@
 </ul>
 
 <br>
+<div class="selected_sport_id" style="display: none;"  >{{ $type->id }}</div>
 
 <div class="panel panel-primary">
     <div class="table-responsive">
@@ -86,8 +88,33 @@
 
 <!-- Modal -->
 @include('rosters.modals.rosters_form')
-        
-        
+
+@section('footer')
+    @if ($errors->has())
+
+        <script>
+            //set the image when redirected back with errors
+            $('#photo').attr('src',document.getElementById('invisible_image').value);
+
+            //open modal when error is made
+            //display errors in modal and hid them with animation slide up in 3 sec
+            $('div.alert').delay(3000).slideUp(300);
+
+            $('#myModal').modal();
+            $('.myModal').show();
+
+            {{ $errors = null }}
+        </script>
+
+    @endif
+
+    @if (session()->has('success'))
+        <script>
+            //display success message in the top when successfully updated roster
+            $('div.success').delay(3000).slideUp(300);
+        </script>
+    @endif
+@stop
     
    
   

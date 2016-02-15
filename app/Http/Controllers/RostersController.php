@@ -166,7 +166,7 @@ $rosters = Roster::all();
                 'food' => 'required',
                 'sfc' => 'required',
                 'invisible_action' => 'required',
-                'photo' => 'required'
+                'image' => 'required'
             );
         }
         // doing the validation, passing post data, rules and the messages

@@ -41,10 +41,21 @@ $(function() {
 $(window).load(function(){
     if(document.getElementById('invisible_action').value == 'edit')
     {
+
         $(".select_sport").hide();
+    }
+    else
+    {
+        $('#photo').hide();
+        $(".form_title").text("Add player");
+        $(".submit_roster_modal").val("Add player");
     }
 
     $("#add_new").click(function() {
+        console.log($(".selected_level_id").text());
+        $('#sport_id').val($(".selected_sport_id").text());
+        $('#level_id').val($(".selected_level_id").text());
+
         document.getElementById('invisible_id').value="";
         document.getElementById('first_name').value="" ;
         document.getElementById('jersey').value="";

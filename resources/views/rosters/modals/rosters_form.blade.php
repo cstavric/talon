@@ -33,9 +33,9 @@
 
                 <div class="form-group select_sport">
                     {!! Form::label('title', 'Sport:', ['class' => 'control-label']) !!}
-                    {{ Form::select('sport_id', $sports, null, ['class' => 'form-control']) }}
+                    {{ Form::select('sport_id', $sports, null, ['class' => 'form-control', 'id' => 'sport_id']) }}
                     {!! Form::label('title', 'Level:', ['class' => 'control-label']) !!}
-                    {{ Form::select('level_id', $levelcreate, null, ['class' => 'form-control']) }}
+                    {{ Form::select('level_id', $levelcreate, null, ['class' => 'form-control', 'id' => 'level_id']) }}
 
                     {!! Form::label('title', 'Year:', ['class' => 'control-label']) !!}
                     {{ Form::select('year_id', $years, null, ['class' => 'form-control']) }}
