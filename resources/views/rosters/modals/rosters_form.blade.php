@@ -5,7 +5,7 @@
         <div class="modal-content">
             <div class="modal-header">
 
-                <h4 class="modal-title">Edit Player</h4>
+                <h4 class="modal-title form_title">Edit Player</h4>
             </div>
             <div class="modal-body">
                 <div class="row">
@@ -127,7 +127,7 @@
 
                                 @endif
                             </div>
-                            {!! Form::submit('Update Player', ['class' => 'btn btn-primary']) !!}&nbsp;
+                            {!! Form::submit('Update Player', ['class' => 'submit_roster_modal btn btn-primary']) !!}&nbsp;
                             <button style="vertical-align: center;" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                         </div></div></div>
             </div>

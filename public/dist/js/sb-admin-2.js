@@ -58,6 +58,9 @@ $(window).load(function(){
         document.getElementById('years_at_sfc').value="" ;
         document.getElementById('invisible_image').value="" ;
         document.getElementById('invisible_action').value='add' ;
+        $('#photo').hide();
+        $(".form_title").text("Add player");
+        $(".submit_roster_modal").val("Add player");
         $(".select_sport").show();
         $('#photo').attr('src',"");
     });
@@ -78,6 +81,7 @@ $(".use-address").click(function() {
     //document.getElementById('first_name').value=$first_name ;
     //document.getElementById('jersey').value=$jersey ;
     $('#photo').attr('src',$src);
+    $('#photo').show();
     document.getElementById('invisible_id').value=$(this).data('id') ;
     document.getElementById('first_name').value=$first_name ;
     document.getElementById('jersey').value=$jersey ;
@@ -91,6 +95,8 @@ $(".use-address").click(function() {
     document.getElementById('years_at_sfc').value=$years_at_sfc ;
     document.getElementById('invisible_image').value=$src ;
     document.getElementById('invisible_action').value='edit';
+    $(".form_title").text("Edit player");
+    $(".submit_roster_modal").val("Update player");
     $(".select_sport").hide();
     //document.getElementById('photo').src=$photo ;
     // Let's test it out

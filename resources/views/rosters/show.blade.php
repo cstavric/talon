@@ -14,14 +14,17 @@
 
 
 <h1>{{ $type->name }} Roster List </h1>
-<p class="lead">Here's a list of all {{ $type->name }} players. <a href="/rosters/create">Add a new one?</a></p>
-    <button type="button" id="add_new" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal">Add</button>
+<p class="lead">Here's a list of all {{ $type->name }} players.
+    <button type="button" id="add_new" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal">Add a new one?</button>
+</p>
+    {{--<a href="/rosters/create">Add a new one?</a>--}}
+
 <hr>
 
 <ul class="nav nav-tabs">
 	 <li class="active"><a href="/rosters/{{ $type->id }}">All</a></li>
 	@foreach($levels as $level)
-  <li><a href="/rosters/filter/{{ $type->id }}/{{  $level['id']}}">{{ $level['name']}}</a></li>
+  <li><a href="/rosters/{{ $type->id }}/filter/{{$level['id']}}">{{$level['name']}}</a></li>
     @endforeach
 </ul>
 

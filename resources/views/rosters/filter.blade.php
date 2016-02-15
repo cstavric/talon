@@ -4,8 +4,11 @@
 
 
 <h1>{{ $type->name }} Roster List </h1>
-<p class="lead">Here's a list of all {{ $type->name }} players. <a href="/rosters/create">Add a new one?</a></p>
-<button type="button" id="add_new" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal">Add</button>
+<p class="lead">Here's a list of all {{ $type->name }} players.
+    <button type="button" id="add_new" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal">Add a new one?</button>
+    {{--<a href="/rosters/create">Add a new one?</a>--}}
+</p>
+
 <hr>
 
 @if(Session::has('flash_message_s'))
@@ -23,9 +26,9 @@
 	<li><a href="/rosters/{{ $type->id }}">All</a></li>
 @foreach($levels as $level)	
   @if ($level['id'] === $lev['id'])
-     <li class="active"><a href="/rosters/filter/{{ $type->id }}/{{  $level['id']}}">{{ $level['name']}}</a></li>
+     <li class="active"><a href="/rosters/{{ $type->id }}/filter/{{  $level['id']}}">{{ $level['name']}}</a></li>
        @else
-  <li><a href="/rosters/filter/{{ $type->id }}/{{  $level['id']}}">{{ $level['name']}}</a></li>
+  <li><a href="/rosters/{{ $type->id }}/filter/{{  $level['id']}}">{{ $level['name']}}</a></li>
   @endif
 @endforeach
 </ul>
@@ -67,7 +70,7 @@
                 </tr>
             @endforeach
                 @else
-
+                <th>No players</th>
             @endif
 
             </tbody>

@@ -87,11 +87,15 @@ class RostersController extends Controller
 
     {       
 
+        if($level_id == 'all')
+            $rosters = Roster::where('sport_id', '=', $sport_id)->orderBy('jersey','DESC')->get();
+        else
+            $rosters = Roster::where('level_id', '=', $level_id)->where('sport_id', '=', $sport_id)->orderBy('jersey','DESC')->get();
 
         $type = Sport::where('id', $sport_id)->first();
         $lev = Level::where('id', $level_id)->first();
         $levelcreate = Level::lists('name', 'id');
-		$rosters = Roster::where('level_id', '=', $level_id)->where('sport_id', '=', $sport_id)->orderBy('jersey','DESC')->get();
+
         $sports = Sport::lists('name', 'id');
         $levels = Level::all();
         $years = Year::lists('name', 'id');
@@ -162,7 +166,7 @@ $rosters = Roster::all();
                 'food' => 'required',
                 'sfc' => 'required',
                 'invisible_action' => 'required',
-                'photo' => ''
+                'photo' => 'required'
             );
         }
         // doing the validation, passing post data, rules and the messages
