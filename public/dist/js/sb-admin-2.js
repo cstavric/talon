@@ -39,6 +39,8 @@ $(function() {
  
  
 $(window).load(function(){
+    if(document.getElementById('invisible_action') != null)
+    {
     if(document.getElementById('invisible_action').value == 'edit')
     {
 
@@ -49,6 +51,7 @@ $(window).load(function(){
         $('#photo').hide();
         $(".form_title").text("Add player");
         $(".submit_roster_modal").val("Add player");
+    }
     }
 
     $("#add_new").click(function() {

@@ -2,28 +2,16 @@
 
 @section('content')
 
-    <div class="success">
-        @if (session()->has('success'))
-
-            {{Session::get('success')}}
 
 
-        @endif
-    </div>
-
-
-
-<h1>{{ $type->name }} Roster List </h1>
-<p class="lead">Here's a list of all {{ $type->name }} players.
-    <button type="button" id="add_new" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal">Add a new one?</button>
+<h1>{{ $type->name }} Roster</h1>
+<p class="lead">
+    <button type="button" id="add_new" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal">Add Player?</button>
+   
 </p>
-    {{--<a href="/rosters/create">Add a new one?</a>--}}
-
-<hr>
 
 <ul class="nav nav-tabs">
 	 <li class="active"><a href="/rosters/{{ $type->id }}">All</a></li>
-
 	@foreach($levels as $level)
   <li><a href="/rosters/{{ $type->id }}/filter/{{$level['id']}}">{{$level['name']}}</a></li>
     @endforeach
@@ -31,8 +19,24 @@
 
 
 <br>
-    <div class="selected_level_id" style="display: none;"  >1</div>
+	<div class="selected_level_id" style="display: none;"  >1</div>
     <div class="selected_sport_id" style="display: none;"  >{{ $type->id }}</div>
+        @if (session()->has('success'))
+  <div class="alert alert-success">
+            {{Session::get('success')}}
+
+    </div>
+    <br>
+        @endif
+
+          @if ($rosters->isEmpty() )
+<div class="bs-callout bs-callout-warning">
+  <h4>No Results</h4>
+  Nothing to see here please select another level, or create a player 
+     <a  data-toggle="modal" data-target="#myModal">Here</a>
+</div>
+
+ @else
 
                         <div class="panel panel-primary">
                             <div class="table-responsive">
@@ -48,11 +52,12 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+
                                     	@foreach($rosters as $roster)
                                         <tr>
                                         	<td><img src="{{asset('uploads/'.$roster->photo ) }}" alt="{{ $roster->first_name }} &nbsp {{ $roster->last_name}}"  height="42"></td>
                                             <td class="jersey">{{ $roster->jersey }}</td>
-                                            <td class="first_name">{{ $roster->first_name }}&nbsp{{ $roster->last_name}}</td>
+                                            <td class="first_name">{{ $roster->first_name }}</td>
                                             <td class="position">{{ $roster->position}}</td>
                                             <td> <button type="button" class="btn btn-primary btn-sm use-address" data-id="{{ $roster->id}}" data-toggle="modal" data-target="#myModal">Edit</button></td>
                                             <td> {!! Form::open([    'method' => 'DELETE','route' => ['rosters.destroy', $roster->id]]) !!}{!! Form::submit('Delete', ['class' => 'btn btn-danger btn-sm']) !!}{!! Form::close() !!}</td>
@@ -67,7 +72,7 @@
                                             <td class="image_name" style="display: none;"  />{{ $roster->photo}}</td>
                                         </tr>
                                         @endforeach
-                               
+                               @endif
 
                                     </tbody>
                                 </table>
@@ -87,6 +92,7 @@
 @stop
 
 @section('footer')
+    <script src="/dist/js/sb-admin-2.js"></script>
           @if ($errors->has())
 
               <script>
@@ -95,7 +101,7 @@
 
                   //open modal when error is made
                   //display errors in modal and hid them with animation slide up in 3 sec
-                  $('div.alert').delay(3000).slideUp(300);
+                  $('div.alert').delay(4000).slideUp(300);
                   $('#myModal').modal();
                   $('.myModal').show();
 
@@ -107,7 +113,7 @@
         @if (session()->has('success'))
                   <script>
                       //display success message in the top when successfully updated roster
-                      $('div.success').delay(3000).slideUp(300);
+                      $('div.alert').delay(4000).slideUp(300);
                   </script>
         @endif
     @stop

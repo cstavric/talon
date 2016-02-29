@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Http\Requests\RostersUploadRequest;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
@@ -28,7 +29,7 @@ class RostersController extends Controller
         $levels = Level::all();
         $years = Year::lists('name', 'id');
 
-           return view('rosters.index',compact('sports','levels','years'))->withRosters($rosters);
+        return view('rosters.index', compact('sports', 'levels', 'years'))->withRosters($rosters);
 
     }
 
@@ -43,54 +44,56 @@ class RostersController extends Controller
         $levels = Level::lists('name', 'id');
         $years = Year::lists('name', 'id');
 
-        return View('rosters.create', compact('sports','levels','years'));
-        
-  
+        return View('rosters.create', compact('sports', 'levels', 'years'));
+
+
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-            $input = $request->all();
+        $input = $request->all();
 
-    Roster::create($input);
+        Roster::create($input);
 
-    return redirect()->back();
+        return redirect()->back();
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($sport_id)
 
     {
-       $type = Sport::where('id', $sport_id)->first();
 
-		$rosters = Roster::where('sport_id', '=', $sport_id)->orderBy('jersey','DESC')->get();
+        $type = Sport::where('id', $sport_id)->first();
+
+        $rosters = Roster::where('sport_id', '=', $sport_id)->orderBy('jersey', 'DESC')->get();
         $sports = Sport::lists('name', 'id');
         $levels = Level::all();
         $levelcreate = Level::lists('name', 'id');
         $years = Year::lists('name', 'id');
         $id_sport = $sport_id;
-        return view('rosters.show',compact('sports','levels','years', 'levelcreate', 'id_sport'))->withRosters($rosters)->with('type', $type);
+
+        return view('rosters.show', compact('sports', 'levels', 'years', 'levelcreate', 'id_sport'))->withRosters($rosters)->with('type', $type);
     }
 
-    public function filter($sport_id,$level_id)
+    public function filter($sport_id, $level_id)
 
-    {       
+    {
 
-        if($level_id == 'all')
-            $rosters = Roster::where('sport_id', '=', $sport_id)->orderBy('jersey','DESC')->get();
+        if ($level_id == 'all')
+            $rosters = Roster::where('sport_id', '=', $sport_id)->orderBy('jersey', 'DESC')->get();
         else
-            $rosters = Roster::where('level_id', '=', $level_id)->where('sport_id', '=', $sport_id)->orderBy('jersey','DESC')->get();
+            $rosters = Roster::where('level_id', '=', $level_id)->where('sport_id', '=', $sport_id)->orderBy('jersey', 'DESC')->get();
 
         $type = Sport::where('id', $sport_id)->first();
         $lev = Level::where('id', $level_id)->first();
@@ -100,35 +103,32 @@ class RostersController extends Controller
         $levels = Level::all();
         $years = Year::lists('name', 'id');
         $id_sport = $sport_id;
-        return view('rosters.filter',compact('sports','levels','years', 'lev', 'levelcreate', 'id_sport'))->withRosters($rosters)->with('type', $type);
+        return view('rosters.filter', compact('sports', 'levels', 'years', 'lev', 'levelcreate', 'id_sport'))->withRosters($rosters)->with('type', $type);
     }
-
-
-
 
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit()
     {
-$rosters = Roster::all();
-                    $sports = Sport::lists('name', 'id');
+        $rosters = Roster::all();
+        $sports = Sport::lists('name', 'id');
         $levels = Level::lists('name', 'id');
         $years = Year::lists('name', 'id');
 
-           return view('rosters.index',compact('sports','levels','years'))->withRosters($rosters);
+        return view('rosters.index', compact('sports', 'levels', 'years'))->withRosters($rosters);
 
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update($sport_id)
@@ -137,7 +137,7 @@ $rosters = Roster::all();
         // getting all of the post data
         $file = Input::all();
 
-        if($file['invisible_action'] == 'edit') {
+        if ($file['invisible_action'] == 'edit') {
             // setting up rules
             $rules = array('first_name' => 'required|min:3',
                 'jersey' => 'required',
@@ -152,9 +152,7 @@ $rosters = Roster::all();
                 'invisible_image' => 'required',
                 'invisible_action' => 'required'
             ); //mimes:jpeg,bmp,png and for max size max:10000
-        }
-        else
-        {
+        } else {
             $rules = array('first_name' => 'required|min:3',
                 'jersey' => 'required',
                 'position' => 'required',
@@ -173,24 +171,20 @@ $rosters = Roster::all();
         $validator = Validator::make(Input::all(), $rules);
 
         //check for validation errors
-        if ($validator->fails())
-        {
+        if ($validator->fails()) {
 
             //setting errors message
             Session::flash('message', $validator->errors()->all());
 
 
-                // send back to the page with the input data and errors
+            // send back to the page with the input data and errors
             return Redirect::back()->withInput()->withErrors($validator);
-                //->with(['error_code' => 5,'roster' => $file]);
+            //->with(['error_code' => 5,'roster' => $file]);
             //return Redirect::to('rosters/1')->with('mysession', 'The Message');
 
             //return Redirect('rosters/1')->with('error_code', 5);;
-        }
-        else
-        {
-            if($file['invisible_action'] == 'edit')
-            {
+        } else {
+            if ($file['invisible_action'] == 'edit') {
                 // checking image if it is valid.
                 if (Input::file('image') != null) {
                     $destinationPath = 'uploads'; // upload path
@@ -217,15 +211,12 @@ $rosters = Roster::all();
                         'height_inches' => $file['heightinches'], 'weight' => $file['weight'], 'hometown' => $file['hometown'],
                         'verse' => $file['bible'], 'food' => $file['food'], 'years_at_sfc' => $file['sfc']]);
                     //set success message
-                    Session::flash('success', 'Upload successfully');
+                    Session::flash('success', 'Update Successfull');
                     return Redirect::back();
                 }
-            }
-            else
-            {
+            } else {
                 // checking image if it is valid.
-                if (Input::file('image') != null)
-                {
+                if (Input::file('image') != null) {
 
                     $destinationPath = 'uploads'; // upload path
                     $extension = Input::file('image')->getClientOriginalExtension(); // getting image extension
@@ -238,11 +229,9 @@ $rosters = Roster::all();
                         'height_inches' => $file['heightinches'], 'weight' => $file['weight'], 'hometown' => $file['hometown'],
                         'verse' => $file['bible'], 'food' => $file['food'], 'years_at_sfc' => $file['sfc']));
 
-                Session::flash('success', 'Created successfully');
-                return Redirect::back();
-                }
-                else
-                {
+                    Session::flash('success', 'Created successfully');
+                    return Redirect::back();
+                } else {
                     Roster::create(array('sport_id' => $file['sport_id'], 'level_id' => $file['level_id'], 'year_id' => $file['year_id'],
                         'first_name' => $file['first_name'],
                         'jersey' => $file['jersey'], 'position' => $file['position'], 'height_feet' => $file['heightfeet'],
@@ -256,25 +245,23 @@ $rosters = Roster::all();
         }
 
 
-
-
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        $roster= Roster::findOrFail($id);
+        $roster = Roster::findOrFail($id);
 
-    $roster->delete();
+        $roster->delete();
 
-    Session::flash('flash_message_s', 'Player successfully deleted!');
-    
+        Session::flash('flash_message_s', 'Player successfully deleted!');
 
-     return redirect()->back();
+
+        return redirect()->back();
     }
 }

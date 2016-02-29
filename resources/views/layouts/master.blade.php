@@ -18,6 +18,8 @@
     <!-- Custom Fonts -->
     <link href="/bower_components/font-awesome/css/font-awesome.min.css" rel=
     "stylesheet" type="text/css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
+    <link rel="stylesheet" href="/css/bootstrap-datetimepicker.css">
     
 
     
@@ -284,7 +286,7 @@
                                             <a href="/rosters/1">Roster</a>
                                         </li>
                                         <li>
-                                            <a href="/shedules/1">Games</a>
+                                            <a href="/games/1">Games</a>
                                         </li>
                                     </ul><!-- /.nav-third-level -->
                                 </li>
@@ -296,7 +298,7 @@
                                             <a href="/rosters/2">Roster</a>
                                         </li>
                                         <li>
-                                            <a href="/shedules/2">Games</a>
+                                            <a href="/games/2">Games</a>
                                         </li>
                                     </ul><!-- /.nav-third-level -->
                                 </li>
@@ -308,7 +310,7 @@
                                             <a href="/rosters/4">Roster</a>
                                         </li>
                                         <li>
-                                            <a href="/shedules/4">Games</a>
+                                            <a href="/games/4">Games</a>
                                         </li>
                                     </ul><!-- /.nav-third-level -->
                                 </li>
@@ -320,7 +322,7 @@
                                             <a href="/rosters/3">Roster</a>
                                         </li>
                                         <li>
-                                            <a href="/shedules/3">Games</a>
+                                            <a href="/games/3">Games</a>
                                         </li>
                                     </ul><!-- /.nav-third-level -->
                                 </li>
@@ -332,7 +334,7 @@
                                             <a href="/rosters/5">Roster</a>
                                         </li>
                                         <li>
-                                            <a href="/shedules/5">Games</a>
+                                            <a href="/games/5">Games</a>
                                         </li>
                                     </ul><!-- /.nav-third-level -->
                                 </li>
@@ -344,7 +346,7 @@
                                             <a href="/rosters/6">Roster</a>
                                         </li>
                                         <li>
-                                            <a href="/shedules/6">Games</a>
+                                            <a href="/games/6">Games</a>
                                         </li>
                                     </ul><!-- /.nav-third-level -->
                                 </li>
@@ -367,7 +369,7 @@
                                             <a href="/rosters/8">Roster</a>
                                         </li>
                                         <li>
-                                            <a href="/shedules/8">Games</a>
+                                            <a href="/games/8">Games</a>
                                         </li>
                                     </ul><!-- /.nav-third-level -->
                                 </li>
@@ -379,7 +381,7 @@
                                             <a href="/rosters/9">Roster</a>
                                         </li>
                                         <li>
-                                            <a href="/shedules/9">Games</a>
+                                            <a href="/games/9">Games</a>
                                         </li>
                                     </ul><!-- /.nav-third-level -->
                                 </li>
@@ -391,7 +393,7 @@
                                             <a href="/rosters/10">Roster</a>
                                         </li>
                                         <li>
-                                            <a href="/shedules/10">Games</a>
+                                            <a href="/games/10">Games</a>
                                         </li>
                                     </ul><!-- /.nav-third-level -->
                                 </li>
@@ -403,7 +405,7 @@
                                             <a href="/rosters/11">Roster</a>
                                         </li>
                                         <li>
-                                            <a href="/shedules/11">Games</a>
+                                            <a href="/games/11">Games</a>
                                         </li>
                                     </ul><!-- /.nav-third-level -->
                                 </li>
@@ -415,7 +417,7 @@
                                             <a href="/rosters/12">Roster</a>
                                         </li>
                                         <li>
-                                            <a href="/shedules/12">Games</a>
+                                            <a href="/games/12">Games</a>
                                         </li>
                                     </ul><!-- /.nav-third-level -->
                                 </li>
@@ -465,8 +467,11 @@
     <script src="/bower_components/morrisjs/morris.min.js">
     </script>
 
-     
-    <script src="/dist/js/sb-admin-2.js"></script>
+        <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+        <script src="/js/moment-with-locales.js"></script>
+        <script src="/js/bootstrap-datetimepicker.js"></script>
+
+        <script src="/dist/js/sb-admin-2.js"></script>
         @yield('footer')
     </div>
 </body>

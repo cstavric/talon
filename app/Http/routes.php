@@ -12,11 +12,11 @@
 */
 
 Route::group(['middleware' => ['web']], function () {
-	Route::get('joe/{order_id}/{other_id}', 'RostersController@specific');
-Route::get('/', [
-    'as' => 'home',
-    'uses' => 'PagesController@home'
-]);
+    Route::get('joe/{order_id}/{other_id}', 'RostersController@specific');
+    Route::get('/', [
+        'as' => 'home',
+        'uses' => 'PagesController@home'
+    ]);
 });
 
 /*
@@ -33,12 +33,19 @@ Route::get('/', [
 
 
 Route::group(['middleware' => ['web']], function () {
-	Route::get('rosters/filter/{sport_id}/{level_id}', 'RostersController@filter');
-	Route::post('rosters/{sport_id}', 'RostersController@update');
-	Route::resource('rosters', 'RostersController');
+    Route::get('rosters/{sport_id}/filter/{level_id}', 'RostersController@filter');
+    Route::post('rosters/{sport_id}', 'RostersController@update');
+    Route::resource('rosters', 'RostersController');
 
 
-	Route::get('rosters/{sport_id}/filter/{level_id}', 'RostersController@filter');
+
+    Route::put('games/{sport_id}', 'GamesController@show_games');
+    Route::put('games/{sport_id}/filter/{level_id}', 'GamesController@show_games_filter');
+    Route::post('games/{sport_id}', 'GamesController@update');
+
+    Route::get('games/{sport_id}', 'GamesController@show');
+    Route::get('games/{sport_id}/filter/{level_id}', 'GamesController@filter');
+    Route::resource('games', 'GamesController');
 
 
     //

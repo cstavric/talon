@@ -1,11 +1,11 @@
-<div class="modal fade" id="myModal" role="dialog">
+<div class="modal fade" id="gameModal" role="dialog">
     <div class="modal-dialog modal-md">
 
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header">
 
-                <h4 class="modal-title form_title">Edit Player</h4>
+                <h4 class="modal-title form_title">Add Game</h4>
             </div>
             <div class="modal-body">
                 <div class="row">
@@ -14,9 +14,10 @@
                         <div class="form-group-sm">
                             <div class="col-s-3">
 
-                                {!! Form::open(array('url'=>'rosters/'.$id_sport, 'method'=>'POST', 'files'=>true)) !!}
-                                {{ Form::hidden('invisible_image', null, ['id' => 'invisible_image']) }}
-                                {{ Form::hidden('invisible_action', null, ['id' => 'invisible_action']) }}
+                                {!! Form::open(array('url'=>'games/'.$id_sport, 'method'=>'POST', 'files'=>true)) !!}
+                                {{ Form::hidden('game_invisible_image', null, ['id' => 'game_invisible_image']) }}
+                                {{ Form::hidden('game_invisible_action', null, ['id' => 'game_invisible_action']) }}
+                                {{ Form::hidden('hidden_game_date', null, ['id' => 'hidden_game_date']) }}
 
                                 <img id="photo" height="100"
                                      src="http://images5.fanpop.com/image/photos/28100000/david-david-hasselhoff-28104576-400-300.jpg">
@@ -35,22 +36,22 @@
 
                 <div class="form-group select_sport">
                     {!! Form::label('title', 'Sport:', ['class' => 'control-label']) !!}
-                    {{ Form::select('sport_id', $sports, null, ['class' => 'form-control', 'id' => 'sport_id']) }}
+
+                    {{ Form::select('game_sport_id', $sports, null, ['class' => 'form-control', 'id' => 'game_sport_id']) }}
                     {!! Form::label('title', 'Level:', ['class' => 'control-label']) !!}
-                    {{ Form::select('level_id', $levelcreate, null, ['class' => 'form-control', 'id' => 'level_id']) }}
+                    {{ Form::select('game_level_id', $levelcreate, null, ['class' => 'form-control', 'id' => 'game_level_id']) }}
+                    {!! Form::label('title', 'Location:', ['class' => 'control-label']) !!}
+                    {{ Form::select('game_location_id', $locations, null, ['class' => 'form-control', 'id' => 'game_location_id']) }}
 
-                    {!! Form::label('title', 'Year:', ['class' => 'control-label']) !!}
-                    {{ Form::select('year_id', $years, null, ['class' => 'form-control']) }}
-
                 </div>
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group-sm">
                             <div class="col-s-3">
-                                {{ Form::hidden('invisible_id', null, ['id' => 'invisible_id']) }}
+                                {{ Form::hidden('game_invisible_id', null, ['id' => 'game_invisible_id']) }}
 
-                                {!! Form::label('title', 'Name:', ['class' => 'control-label']) !!}
-                                {!! Form::text('first_name', null, ['class' => 'form-control', 'id'=> 'first_name', 'required'=> 'true']) !!}
+                                {!! Form::label('title', 'Opponent:', ['class' => 'control-label']) !!}
+                                {!! Form::select('opponent',$opponents, null, ['class' => 'form-control', 'id'=> 'opponent']) !!}
                             </div>
                         </div>
                     </div>
@@ -58,80 +59,64 @@
                     <div class="col-md-6">
                         <div class="form-group-sm">
                             <div class="col-s-3">
-                                {!! Form::label('title', 'Jersey:', ['class' => 'control-label']) !!}
-                                {!! Form::text('jersey', null, ['class' => 'form-control', 'id'=> 'jersey']) !!}
-                            </div>
+                                {!! Form::label('title', 'Game date:', ['class' => 'control-label']) !!}
+                                {{--{!! Form::input('game_date', "", ['class' => 'form-control', 'id'=> 'game_date', 'placeholder '=> 'YYYY-MM-DD']) !!}--}}
+                                {{ Form::text('game_date', '', array('class'=>'form-control','id' => 'game_date')) }}
+
                         </div>
                     </div>
                 </div>
                 <div class="row">
+
                     <div class="col-md-6">
                         <div class="form-group-sm">
                             <div class="col-s-3">
-                                {!! Form::label('title', 'Position:', ['class' => 'control-label']) !!}
-                                {!! Form::text('position', null, ['class' => 'form-control', 'id'=> 'position']) !!}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group-sm">
-                            <div class="col-s-3">
-                                {!! Form::label('title', 'Years at SFC:', ['class' => 'control-label']) !!}
-                                {!! Form::text('sfc', null, ['class' => 'form-control', 'id'=> 'years_at_sfc']) !!}
+                                {!! Form::label('title', 'Home or away:', ['class' => 'control-label']) !!}
+                                {!! Form::select('home_or_away',['home'=>'home','away'=>'away'], null, ['class' => 'form-control', 'id'=> 'home_or_away']) !!}
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row past_game">
                     <div class="col-md-6">
                         <div class="form-group-sm">
                             <div class="col-s-3">
-                                {!! Form::label('title', 'Height(Feet):', ['class' => 'control-label']) !!}
-                                {!! Form::text('heightfeet', null, ['class' => 'form-control', 'id'=> 'height_feet']) !!}
+                                {!! Form::label('title', 'Game preview:', ['class' => 'control-label']) !!}
+                                {!! Form::text('game_preview', null, ['class' => 'form-control', 'id'=> 'game_preview']) !!}
                             </div>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group-sm">
                             <div class="col-s-3">
-                                {!! Form::label('title', 'Height(Inches):', ['class' => 'control-label']) !!}
-                                {!! Form::text('heightinches', null, ['class' => 'form-control', 'id'=> 'height_inches']) !!}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group-sm">
-                            <div class="col-s-3">
-                                {!! Form::label('title', 'Weight:', ['class' => 'control-label']) !!}
-                                {!! Form::text('weight', null, ['class' => 'form-control', 'id'=> 'weight']) !!}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group-sm">
-                            <div class="col-s-3">
-                                {!! Form::label('title', 'Hometown:', ['class' => 'control-label']) !!}
-                                {!! Form::text('hometown', null, ['class' => 'form-control', 'id'=> 'hometown']) !!}
+                                {!! Form::label('title', 'Game recap:', ['class' => 'control-label']) !!}
+                                {!! Form::text('game_recap', null, ['class' => 'form-control', 'id'=> 'game_recap']) !!}
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row past_game">
                     <div class="col-md-6">
                         <div class="form-group-sm">
                             <div class="col-s-3">
-                                {!! Form::label('title', 'Favorite Bible Verse:', ['class' => 'control-label']) !!}
-                                {!! Form::text('bible', null, ['class' => 'form-control', 'id'=> 'verse']) !!}
+                                {!! Form::label('title', 'Video:', ['class' => 'control-label']) !!}
+                                {!! Form::text('video', null, ['class' => 'form-control', 'id'=> 'video']) !!}
                             </div>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group-sm">
                             <div class="col-s-3">
-                                {!! Form::label('title', 'Favorite Food:', ['class' => 'control-label']) !!}
-                                {!! Form::text('food', null, ['class' => 'form-control', 'id'=> 'food']) !!}
+                                {!! Form::label('title', 'Our score:', ['class' => 'control-label']) !!}
+                                {!! Form::text('our_score', null, ['class' => 'form-control', 'id'=> 'our_score']) !!}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group-sm">
+                            <div class="col-s-3">
+                                {!! Form::label('title', 'Opponents score:', ['class' => 'control-label']) !!}
+                                {!! Form::text('opponents_score', null, ['class' => 'form-control', 'id'=> 'opponents_score']) !!}
                             </div>
                         </div>
                     </div>
@@ -158,7 +143,7 @@
                                     </div>
                                 @endif
 
-                                {!! Form::submit('Update Player', ['class' => 'submit_roster_modal btn btn-primary']) !!}
+                                {!! Form::submit('Add game', ['class' => 'submit_game_modal btn btn-primary']) !!}
                                 &nbsp;
                                 <button style="vertical-align: center;" type="button" class="btn btn-default"
                                         data-dismiss="modal">Close
@@ -173,3 +158,6 @@
             </div>
         </div>
     </div>
+</div>
+
+</div>
