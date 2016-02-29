@@ -1,38 +1,3 @@
-$(function() {
-
-    $('#side-menu').metisMenu();
-
-});
-
-$(function() {
-
-    $(window).bind("load resize", function() {
-        topOffset = 50;
-        width = (this.window.innerWidth > 0) ? this.window.innerWidth : this.screen.width;
-        if (width < 768) {
-            $('div.navbar-collapse').addClass('collapse');
-            topOffset = 100; // 2-row-menu
-        } else {
-            $('div.navbar-collapse').removeClass('collapse');
-        }
-
-        height = ((this.window.innerHeight > 0) ? this.window.innerHeight : this.screen.height) - 1;
-        height = height - topOffset;
-        if (height < 1) height = 1;
-        if (height > topOffset) {
-            $("#page-wrapper").css("min-height", (height) + "px");
-        }
-    });
-
-    var url = window.location;
-    var element = $('ul.nav a').filter(function() {
-        return this.href == url || url.href.indexOf(this.href) == 0;
-    }).addClass('active').parent().parent().addClass('in').parent();
-    if (element.is('li')) {
-        element.addClass('active');
-    }
-});
-
 $(window).load(function(){
 
     if(document.getElementById('game_invisible_action') != null)
@@ -47,24 +12,25 @@ $(window).load(function(){
             if(d1>d2)
             {
                 $('.past_game').show();
+                $('.future_game').hide();
                 console.log('1');
             }
             else
             {
                 $('.past_game').hide();
+                $('.future_game').show();
                 console.log('2');
             }
         }
         else
         {
             $('.past_game').hide();
+            $('.future_game').show();
             $('#photo').hide();
             $(".form_title").text("Add game");
             $(".submit_game_modal").val("Add game");
 
         }
-
-
 
     }
 
@@ -72,6 +38,7 @@ $(window).load(function(){
         $('#game_sport_id').val($(".selected_sport_id").text());
         $('#game_level_id').val($(".selected_level_id").text());
         $('.past_game').hide();
+        $('.future_game').show();
         document.getElementById('game_invisible_id').value="";
         document.getElementById('opponent').value="" ;
         document.getElementById('game_date').value="";
@@ -110,10 +77,12 @@ $(window).load(function(){
         if(d1>d2)
         {
             $('.past_game').show();
+            $('.future_game').hide();
         }
         else
         {
             $('.past_game').hide();
+            $('.future_game').show();
         }
 
         $('#photo').attr('src',$src);

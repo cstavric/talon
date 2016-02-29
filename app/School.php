@@ -8,7 +8,7 @@ class School extends Model
 {
     protected $table = 'schools';
     protected $fillable = [
-        'name', 'short_name', 'mascot_name', 'athletics_logo', 'bio', 'adress', 'city', 'state', 'zip', 'phone', 'website', 'facebook', 'instagram', 'youtube','vimeo'
+        'name', 'short_name', 'mascot_name', 'athletics_logo', 'bio', 'adress', 'city', 'state', 'zip', 'phone', 'website', 'twitter', 'facebook', 'instagram', 'youtube','vimeo'
 
     ];
 

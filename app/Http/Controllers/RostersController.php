@@ -71,7 +71,6 @@ class RostersController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($sport_id)
-
     {
 
         $type = Sport::where('id', $sport_id)->first();

@@ -156,6 +156,7 @@ class GamesController extends Controller
                 'game_date' => 'required',
                 'home_or_away' => 'required',
                 'game_invisible_action' => 'required',
+                'game_preview' => 'required',
             );
         }
         else
@@ -168,6 +169,7 @@ class GamesController extends Controller
                     'game_date' => 'required',
                     'home_or_away' => 'required',
                     'game_invisible_action' => 'required',
+                    'game_preview' => 'required',
                 );
             }
             else
@@ -177,7 +179,6 @@ class GamesController extends Controller
                     'game_date' => 'required',
                     'home_or_away' => 'required',
                     'game_invisible_action' => 'required',
-                    'game_preview' => 'required',
                     'game_recap' => 'required',
                     'video' => 'required',
                     'our_score' => 'required',
@@ -218,7 +219,7 @@ class GamesController extends Controller
                     Input::file('image')->move($destinationPath, $fileName); // uploading file to given path
 
                     Games::create(array('sport_id' => $file['game_sport_id'], 'level_id' => $file['game_level_id'], 'locations_id' => $file['game_location_id'],
-                        'opponents_id' => $file['opponent'],'game_date' => $file['game_date'], 'home_away' => $file['home_or_away'],
+                        'opponents_id' => $file['opponent'],'game_date' => $file['game_date'], 'home_away' => $file['home_or_away'],'game_preview'=>$file['game_preview'],
                         'photo' => $fileName));
 
                     Session::flash('success', 'Created successfully');
@@ -227,7 +228,7 @@ class GamesController extends Controller
                 else
                 {
                     Games::create(array('sport_id' => $file['game_sport_id'], 'level_id' => $file['game_level_id'], 'locations_id' => $file['game_location_id'],
-                        'opponents_id' => $file['opponent'], 'game_date' => $file['game_date'], 'home_away' => $file['home_or_away']));
+                        'opponents_id' => $file['opponent'], 'game_date' => $file['game_date'], 'home_away' => $file['home_or_away'],'game_preview'=>$file['game_preview']));
 
                     Session::flash('success', 'Created successfully');
                     return Redirect::back();
@@ -244,12 +245,13 @@ class GamesController extends Controller
 
                     if (new DateTime() > new DateTime($file['game_date']))
                     {
-                        Games::where('id', '=', $file['game_invisible_id'])->first()->update(['opponents_id' => $file['opponent'],'game_date' => $file['game_date'], 'home_away' => $file['home_or_away'],'photo' => $fileName]);
+                        Games::where('id', '=', $file['game_invisible_id'])->first()->update(['opponents_id' => $file['opponent'],'game_date' => $file['game_date'],'game_preview'=>$file['game_preview'], 'home_away' => $file['home_or_away'],'photo' => $fileName]);
                     }
                     else
                     {
+                        dd($file);
                         Games::where('id', '=', $file['game_invisible_id'])->first()->update(['opponents_id' => $file['opponent'],'game_date' => $file['game_date'],
-                            'home_away' => $file['home_or_away'],'game_preview'=>$file['game_preview'],'game_recap'=>$file['game_recap'], 'video'=>$file['video'],
+                            'home_away' => $file['home_or_away'],'game_recap'=>$file['game_recap'], 'video'=>$file['video'],
                             'our_score'=>$file['our_score'],'opponents_score'=>$file['opponents_score'],'photo' => $fileName]);
                     }
 
@@ -259,13 +261,13 @@ class GamesController extends Controller
                 }
                 else
                 {
-                    if (new DateTime() > new DateTime($file['game_date']))
+                    if (new DateTime() < new DateTime($file['hidden_game_date']))
                     {
-                        Games::where('id', '=', $file['game_invisible_id'])->first()->update(['opponents_id' => $file['opponent'],'game_date' => $file['game_date'], 'home_away' => $file['home_or_away']]);
+                        Games::where('id', '=', $file['game_invisible_id'])->first()->update(['opponents_id' => $file['opponent'],'game_date' => $file['game_date'], 'home_away' => $file['home_or_away'],'game_preview'=>$file['game_preview']]);
                     }
                     else
                     {
-                        Games::where('id', '=', $file['game_invisible_id'])->first()->update(['opponents_id' => $file['opponent'],'game_date' => $file['game_date'], 'home_away' => $file['home_or_away'],'game_preview'=>$file['game_preview'],'game_recap'=>$file['game_recap'], 'video'=>$file['video'],
+                        Games::where('id', '=', $file['game_invisible_id'])->first()->update(['opponents_id' => $file['opponent'],'game_date' => $file['game_date'], 'home_away' => $file['home_or_away'],'game_recap'=>$file['game_recap'], 'video'=>$file['video'],
                             'our_score'=>$file['our_score'],'opponents_score'=>$file['opponents_score']]);
                     }
 

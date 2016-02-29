@@ -47,6 +47,11 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('games/{sport_id}/filter/{level_id}', 'GamesController@filter');
     Route::resource('games', 'GamesController');
 
+    Route::get('schools/', 'SchoolsController@show');
+    Route::resource('schools', 'SchoolsController');
+
+    Route::resource('locations', 'LocationsController');
+
 
     //
 });

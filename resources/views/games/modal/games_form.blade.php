@@ -76,21 +76,19 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="row past_game">
                     <div class="col-md-6">
-                        <div class="form-group-sm">
+                        <div class="form-group-s future_game">
                             <div class="col-s-3">
                                 {!! Form::label('title', 'Game preview:', ['class' => 'control-label']) !!}
-                                {!! Form::text('game_preview', null, ['class' => 'form-control', 'id'=> 'game_preview']) !!}
+                                {!! Form::textarea('game_preview', null, ['class' => 'form-control', 'id'=> 'game_preview']) !!}
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-6 past_game">
                         <div class="form-group-sm">
                             <div class="col-s-3">
                                 {!! Form::label('title', 'Game recap:', ['class' => 'control-label']) !!}
-                                {!! Form::text('game_recap', null, ['class' => 'form-control', 'id'=> 'game_recap']) !!}
+                                {!! Form::textarea('game_recap', null, ['class' => 'form-control', 'id'=> 'game_recap']) !!}
                             </div>
                         </div>
                     </div>

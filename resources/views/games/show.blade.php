@@ -39,11 +39,17 @@
                         <th>Oponents name</th>
                         <th>Game date</th>
                         <th>Home or away</th>
+                        @if($show_games == '2' || $show_games == '0')
                         <th>Our score</th>
-                        <th>opponents score</th>
+                        <th>Opponents score</th>
                         <th>Video</th>
-                        <th>Game preview</th>
+
                         <th>Game recap</th>
+                        @endif
+                        @if($show_games == '1' || $show_games == '0')
+                        <th>Game preview</th>
+                        @endif
+                       
                         {!! Form::open(array('url'=>'games/'.$id_sport, 'method'=>'put')) !!}
                         <th colspan="2">{!! Form::select('games_select',['all','future','past'], $show_games, ['class' => 'form-control', 'id'=> 'games_select', 'onchange' => 'this.form.submit()']) !!}</th>
                         {!! Form::close() !!}
@@ -56,11 +62,15 @@
                             <td> {{ $school_names[$game->opponents_id]}}</td>
                             <td>{{ $game->game_date}}</td>
                             <td>{{ $game->home_away}}</td>
+                            @if($show_games == '2' || $show_games == '0')
                             <td>{{ $game->opponents_score}}</td>
                             <td>{{ $game->our_score}}</td>
                             <td>{{ $game->video}}</td>
-                            <td>{{ $game->game_preview}}</td>
                             <td>{{ $game->game_recap}}</td>
+                            @endif
+                            @if($show_games == '1' || $show_games == '0')
+                            <td>{{ $game->game_preview}}</td>
+                            @endif
 
                             <td> <button type="button" class="btn btn-primary btn-sm edit_new_game" data-id="{{ $game->id}}" data-toggle="modal" data-target="#gameModal">Edit</button></td>
                             <td> {!! Form::open([    'method' => 'DELETE','route' => ['games.destroy', $game->id]]) !!}{!! Form::submit('Delete', ['class' => 'btn btn-danger btn-sm']) !!}{!! Form::close() !!}</td>
@@ -73,7 +83,6 @@
                             <td class="hidden_game_date" style="display: none;"  />{{ $game->game_date}}</td>
                             <td class="home_or_away" style="display: none;"  />{{ $game->home_away}}</td>
                             <td class="photo" style="display: none;"  />{{asset('uploads/games/'.$game->photo ) }}</td>
-
                             <td class="opponents_score" style="display: none;"  />{{ $game->opponents_score}}</td>
                             <td class="our_score" style="display: none;"  />{{ $game->our_score}}</td>
                             <td class="video" style="display: none;"  />{{ $game->video}}</td>

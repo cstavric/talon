@@ -92,7 +92,7 @@
 @stop
 
 @section('footer')
-    <script src="/dist/js/sb-admin-2.js"></script>
+    <script src="/dist/js/sb-rosters-2.js"></script>
           @if ($errors->has())
 
               <script>
