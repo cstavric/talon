@@ -35,6 +35,7 @@ Route::group(['middleware' => ['web']], function () {
 Route::group(['middleware' => ['web']], function () {
     Route::get('rosters/{sport_id}/filter/{level_id}', 'RostersController@filter');
     Route::post('rosters/{sport_id}', 'RostersController@update');
+    Route::put('rosters/{sport_id}', 'RostersController@show');
     Route::resource('rosters', 'RostersController');
 
 

@@ -4,9 +4,9 @@
 
 
 
-    <h1>{{ $type->name }} Games</h1>
+    <h1>{{ $type->name }} Schedule</h1>
     <p class="lead">
-        <button type="button" id="add_new_game" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#gameModal">Add Game?</button>
+        <button type="button" id="add_new_game" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#gameModal">Schedule Event?</button>
     </p>
 
     <ul class="nav nav-tabs">
@@ -32,26 +32,24 @@
 
         <div class="panel panel-primary">
             <div class="table-responsive">
-                <table class="table table-hover">
+                <table class="table table-hover sortable">
                     <thead  style="background-color:#337AB7; color:white">
                     <tr>
-                        <th>&nbsp;</th>
-                        <th>Oponents name</th>
-                        <th>Game date</th>
-                        <th>Home or away</th>
+                        <th class="sorttable_nosort">&nbsp;</th>
+                        <th style="cursor: pointer;">Oponent</th>
+                        <th style="cursor: pointer;">Date Time</th>
+                        <th style="cursor: pointer;">Home/Away</th>
                         @if($show_games == '2' || $show_games == '0')
-                        <th>Our score</th>
-                        <th>Opponents score</th>
-                        <th>Video</th>
+                        <th style="cursor: pointer;">Our Score</th>
+                        <th style="cursor: pointer;">Opponents Score</th>
+                        @else
+                            <th class="sorttable_nosort">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                            <th class="sorttable_nosort">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                        @endif
 
-                        <th>Game recap</th>
-                        @endif
-                        @if($show_games == '1' || $show_games == '0')
-                        <th>Game preview</th>
-                        @endif
                        
                         {!! Form::open(array('url'=>'games/'.$id_sport, 'method'=>'put')) !!}
-                        <th colspan="2">{!! Form::select('games_select',['all','future','past'], $show_games, ['class' => 'form-control', 'id'=> 'games_select', 'onchange' => 'this.form.submit()']) !!}</th>
+                        <th colspan="2" class="sorttable_nosort">{!! Form::select('games_select',['All Events','Future Events','Past Events'], $show_games, ['class' => 'form-control', 'id'=> 'games_select', 'onchange' => 'this.form.submit()']) !!}</th>
                         {!! Form::close() !!}
                     </tr>
                     </thead>
@@ -65,12 +63,11 @@
                             @if($show_games == '2' || $show_games == '0')
                             <td>{{ $game->opponents_score}}</td>
                             <td>{{ $game->our_score}}</td>
-                            <td>{{ $game->video}}</td>
-                            <td>{{ $game->game_recap}}</td>
+                            @else
+                                <td class="sorttable_nosort">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                <td class="sorttable_nosort">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
                             @endif
-                            @if($show_games == '1' || $show_games == '0')
-                            <td>{{ $game->game_preview}}</td>
-                            @endif
+
 
                             <td> <button type="button" class="btn btn-primary btn-sm edit_new_game" data-id="{{ $game->id}}" data-toggle="modal" data-target="#gameModal">Edit</button></td>
                             <td> {!! Form::open([    'method' => 'DELETE','route' => ['games.destroy', $game->id]]) !!}{!! Form::submit('Delete', ['class' => 'btn btn-danger btn-sm']) !!}{!! Form::close() !!}</td>
@@ -117,7 +114,18 @@
 @stop
 
 @section('footer')
+    <script type="text/javascript">
+        $('#game_sport_id').select2();
+        $('#game_level_id').select2();
+        $('#game_location_id').select2();
+        $('#opponent').select2({
+            placeholder: "Select opponent",
+        });
+        $('#home_or_away').select2({
+            placeholder: "Select home or away",
+        });
 
+    </script>
     <script src="/dist/js/sb-games-2.js"></script>
     <script type="text/javascript">
         $(function () {

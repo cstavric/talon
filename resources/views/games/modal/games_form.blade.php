@@ -36,12 +36,11 @@
 
                 <div class="form-group select_sport">
                     {!! Form::label('title', 'Sport:', ['class' => 'control-label']) !!}
-
-                    {{ Form::select('game_sport_id', $sports, null, ['class' => 'form-control', 'id' => 'game_sport_id']) }}
+                    {{ Form::select('game_sport_id', $sports, null, ['class' => 'form-control', 'id' => 'game_sport_id', 'style' => 'width: 100%']) }}
                     {!! Form::label('title', 'Level:', ['class' => 'control-label']) !!}
-                    {{ Form::select('game_level_id', $levelcreate, null, ['class' => 'form-control', 'id' => 'game_level_id']) }}
+                    {{ Form::select('game_level_id', $levelcreate, null, ['class' => 'form-control', 'id' => 'game_level_id', 'style' => 'width: 100%']) }}
                     {!! Form::label('title', 'Location:', ['class' => 'control-label']) !!}
-                    {{ Form::select('game_location_id', $locations, null, ['class' => 'form-control', 'id' => 'game_location_id']) }}
+                    {{ Form::select('game_location_id', $locations, null, ['class' => 'form-control', 'id' => 'game_location_id', 'style' => 'width: 100%']) }}
 
                 </div>
                 <div class="row">
@@ -51,7 +50,7 @@
                                 {{ Form::hidden('game_invisible_id', null, ['id' => 'game_invisible_id']) }}
 
                                 {!! Form::label('title', 'Opponent:', ['class' => 'control-label']) !!}
-                                {!! Form::select('opponent',$opponents, null, ['class' => 'form-control', 'id'=> 'opponent']) !!}
+                                {!! Form::select('opponent',$opponents, null, ['class' => 'form-control', 'id'=> 'opponent', 'style' => 'width: 100%']) !!}
                             </div>
                         </div>
                     </div>
@@ -66,13 +65,14 @@
                         </div>
                     </div>
                 </div>
+                    </div>
                 <div class="row">
 
                     <div class="col-md-6">
                         <div class="form-group-sm">
                             <div class="col-s-3">
                                 {!! Form::label('title', 'Home or away:', ['class' => 'control-label']) !!}
-                                {!! Form::select('home_or_away',['home'=>'home','away'=>'away'], null, ['class' => 'form-control', 'id'=> 'home_or_away']) !!}
+                                {!! Form::select('home_or_away',['home'=>'home','away'=>'away'], null, ['class' => 'form-control', 'id'=> 'home_or_away', 'style' => 'width: 100%']) !!}
                             </div>
                         </div>
                     </div>

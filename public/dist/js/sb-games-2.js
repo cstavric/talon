@@ -1,32 +1,30 @@
 $(window).load(function(){
-
-    if(document.getElementById('game_invisible_action') != null)
+    if(document.getElementById('game_invisible_action').value != "")
     {
         if(document.getElementById('game_invisible_action').value == 'edit')
         {
             $(".form_title").text("Edit game");
             $(".submit_game_modal").val("Update game");
-            $(".select_sport").hide();
+            $(".select_sport").css('display','none');
             var d1 = new Date();
-            var d2 = new Date(document.getElementById('hidden_game_date').value);
+            var d2 = new Date(document.getElementById('hidden_game_date').value.replace(' ', 'T'));
             if(d1>d2)
             {
-                $('.past_game').show();
-                $('.future_game').hide();
-                console.log('1');
+                $('.past_game').css('display','block');
+                $('.future_game').css('display','none');
             }
             else
             {
-                $('.past_game').hide();
-                $('.future_game').show();
-                console.log('2');
+                $('.past_game').css('display','none');
+                $('.future_game').css('display','block');
             }
         }
         else
         {
-            $('.past_game').hide();
-            $('.future_game').show();
-            $('#photo').hide();
+            $(".select_sport").css('display','block');
+            $('.past_game').css('display','none');
+            $('.future_game').css('display','block');
+            $('#photo').css('display','none');
             $(".form_title").text("Add game");
             $(".submit_game_modal").val("Add game");
 
@@ -35,14 +33,16 @@ $(window).load(function(){
     }
 
     $("#add_new_game").click(function() {
-        $('#game_sport_id').val($(".selected_sport_id").text());
-        $('#game_level_id').val($(".selected_level_id").text());
-        $('.past_game').hide();
-        $('.future_game').show();
+        $(".select_sport").css('display','block');
+        $('#game_sport_id').val($(".selected_sport_id").text()).change();
+        $('#game_level_id').val($(".selected_level_id").text()).change();
+        $('.past_game').css('display','none');
+        $('.future_game').css('display','block');
         document.getElementById('game_invisible_id').value="";
-        document.getElementById('opponent').value="" ;
+        $('#opponent').val('').change();
         document.getElementById('game_date').value="";
-        document.getElementById('home_or_away').value="" ;
+        $('#game_location_id').val('').change();
+        $('#home_or_away').val('').change();
         document.getElementById('game_preview').value="";
         document.getElementById('game_recap').value="" ;
         document.getElementById('video').value="" ;
@@ -50,14 +50,14 @@ $(window).load(function(){
         document.getElementById('opponents_score').value="" ;
         document.getElementById('game_invisible_image').value="" ;
         document.getElementById('game_invisible_action').value="add" ;
-        $('#photo').hide();
+        $('#photo').css('display','none');
         $(".form_title").text("Add game");
         $(".submit_game_modal").val("Add game");
         $('#photo').attr('src',"");
     });
 
     $(".edit_new_game").click(function() {
-        $(".select_sport").hide();
+        $(".select_sport").css('display','none');
         $(".submit_game_modal").val("Update game");
         var $row = $(this).closest("tr");    // Find the row
         var $opponent = $row.find(".opponents_id").text();
@@ -72,25 +72,26 @@ $(window).load(function(){
         //document.getElementById('first_name').value=$first_name ;
         //document.getElementById('jersey').value=$jersey ;
         var d1 = new Date();
-        var d2 = new Date($row.find(".game_date").text());
-
+        var d2 = new Date($row.find(".game_date").text().replace(' ', 'T'));
         if(d1>d2)
         {
-            $('.past_game').show();
-            $('.future_game').hide();
+            $('.past_game').css('display','block');
+            $('.future_game').css('display','none');
         }
         else
         {
-            $('.past_game').hide();
-            $('.future_game').show();
+            $('.past_game').css('display','none');
+            $('.future_game').css('display','block');
         }
 
         $('#photo').attr('src',$src);
-        $('#photo').show();
+        $('#photo').css('display','block');
         document.getElementById('game_invisible_id').value=$(this).data('id');
-        document.getElementById('opponent').value = $opponent;
+        //document.getElementById('opponent').value = $opponent;
+        $('#opponent').val($opponent).change();
         document.getElementById('game_date').value= $game_date;
-        document.getElementById('home_or_away').value=$home_or_away;
+        //document.getElementById('home_or_away').value=$home_or_away;
+        $('#home_or_away').val($home_or_away).change();
         document.getElementById('game_preview').value=$game_preview;
         document.getElementById('game_recap').value=$game_recap;
         document.getElementById('video').value=$video;

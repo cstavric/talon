@@ -3,11 +3,9 @@
 @section('content')
 
 
-    <h1>{{ $type->name }} Roster</h1>
+    <h1>{{ $type->name }} Schedule</h1>
     <p class="lead">{{ $lev->name }}&nbsp;
-        <button type="button" id="add_new_game" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#gameModal">Add
-            Player?
-        </button>
+        <button type="button" id="add_new_game" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#gameModal">Schedule Event</button>
 
     </p>
 
@@ -49,47 +47,52 @@
         <div class="panel panel-primary">
             <div class="table-responsive">
                 <table class="table table-hover">
-                    <thead style="background-color:#337AB7; color:white">
+                    <thead  style="background-color:#337AB7; color:white">
                     <tr>
                         <th>&nbsp;</th>
-                        <th>Oponents name</th>
-                        <th>Game date</th>
-                        <th>Home or away</th>
-                        <th>Our score</th>
-                        <th>opponents score</th>
-                        <th>Video</th>
-                        <th>Game preview</th>
-                        <th>Game recap</th>
+                        <th>Oponent</th>
+                        <th>Date Time</th>
+                        <th>Home/Away</th>
+                        @if($show_games == '2' || $show_games == '0')
+                            <th>Our Score</th>
+                            <th>Opponents Score</th>
+                         @else
+                            <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                            <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                        @endif
+
                         {!! Form::open(array('url'=>'games/'.$id_sport.'/filter/'.$lev['id'], 'method'=>'put')) !!}
-                        <th colspan="2">{!! Form::select('games_select',['all','future','past'], $show_games, ['class' => 'form-control', 'id'=> 'games_select', 'onchange' => 'this.form.submit()']) !!}</th>
+                        <th colspan="2">{!! Form::select('games_select',['All Events','Future Events','Past Events'], $show_games, ['class' => 'form-control', 'id'=> 'games_select', 'onchange' => 'this.form.submit()']) !!}</th>
                         {!! Form::close() !!}
                     </tr>
                     </thead>
                     <tbody>
-
                     @foreach($games as $game)
                         <tr>
                             <td><img src="{{asset('uploads/schools/'.$school_logo[$game->opponents_id] ) }}" height="42"></td>
                             <td> {{ $school_names[$game->opponents_id]}}</td>
                             <td>{{ $game->game_date}}</td>
                             <td>{{ $game->home_away}}</td>
-                            <td>{{ $game->opponents_score}}</td>
-                            <td>{{ $game->our_score}}</td>
-                            <td>{{ $game->video}}</td>
-                            <td>{{ $game->game_preview}}</td>
-                            <td>{{ $game->game_recap}}</td>
+                            @if($show_games == '2' || $show_games == '0')
+                                <td>{{ $game->opponents_score}}</td>
+                                <td>{{ $game->our_score}}</td>
+                            @else
+                                <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                            @endif
+
 
                             <td> <button type="button" class="btn btn-primary btn-sm edit_new_game" data-id="{{ $game->id}}" data-toggle="modal" data-target="#gameModal">Edit</button></td>
                             <td> {!! Form::open([    'method' => 'DELETE','route' => ['games.destroy', $game->id]]) !!}{!! Form::submit('Delete', ['class' => 'btn btn-danger btn-sm']) !!}{!! Form::close() !!}</td>
                             <td class="id" style="display: none;"  />{{ $game->id }}</td>
                             <td class="game_sport_id" style="display: none;"  />{{ $game->sport_id }}</td>
                             <td class="game_level_id" style="display: none;"  />{{ $game->level_id }}</td>
+                            <td class="game_locations_id" style="display: none;"  />{{ $game->locations_id }}</td>
                             <td class="opponents_id" style="display: none;"  />{{ $game->opponents_id }}</td>
                             <td class="game_date" style="display: none;"  />{{ $game->game_date}}</td>
-                            <td class="game_time" style="display: none;"  />{{ $game->game_time}}</td>
+                            <td class="hidden_game_date" style="display: none;"  />{{ $game->game_date}}</td>
                             <td class="home_or_away" style="display: none;"  />{{ $game->home_away}}</td>
                             <td class="photo" style="display: none;"  />{{asset('uploads/games/'.$game->photo ) }}</td>
-
                             <td class="opponents_score" style="display: none;"  />{{ $game->opponents_score}}</td>
                             <td class="our_score" style="display: none;"  />{{ $game->our_score}}</td>
                             <td class="video" style="display: none;"  />{{ $game->video}}</td>

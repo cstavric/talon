@@ -4,9 +4,9 @@
 
 
 
-    <h1>Schools</h1>
+    <h1>Opponents</h1>
     <p class="lead">
-        <button type="button" id="add_new_school" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#schoolModal">Add School?</button>
+        <button type="button" id="add_new_school" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#schoolModal">Add Opponent?</button>
 
     </p>
 
@@ -22,7 +22,7 @@
     @if ($schools->isEmpty() )
         <div class="bs-callout bs-callout-warning">
             <h4>No Results</h4>
-            Nothing to see here please create a school
+            Nothing to see here please create an Opponent
             <a  data-toggle="modal" data-target="#schoolModal">Here</a>
         </div>
 

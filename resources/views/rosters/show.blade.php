@@ -40,25 +40,30 @@
 
                         <div class="panel panel-primary">
                             <div class="table-responsive">
-                                <table class="table table-hover">
+                                <table class="table table-hover sortable" id="myTable">
                                     <thead  style="background-color:#337AB7; color:white">
-                                        <tr>  
-                                            <th>  </th>
-                                            <th>Jersey</th>                                      
-                                            <th>Name</th>
-                                            <th>Position</th>
-                                            <th>&nbsp;</th>
-                                            <th>&nbsp;</th>
+                                        <tr>
+                                            <th class="sorttable_nosort"></th>
+                                            {{--<td> {!! Form::open([    'method' => 'put','route' => ['rosters.show', $id_sport]]) !!}{{ Form::hidden('sortby', 'jersey') }}{!! Form::submit('Jersy', ['class' => 'btn btn-danger btn-sm']) !!}{!! Form::close() !!}</td>--}}
+                                            <th style="cursor: pointer;">Jersey</th>
+                                            <th style="cursor: pointer;">Name</th>
+                                            <th style="cursor: pointer;">Position</th>
+                                            <th style="cursor: pointer;">Level</th>
+                                            <th style="cursor: pointer;">Year</th>
+                                            <th style="cursor: pointer;" class="sorttable_nosort">&nbsp;</th>
+                                            <th style="cursor: pointer;" class="sorttable_nosort">&nbsp;</th>
                                         </tr>
                                     </thead>
                                     <tbody>
 
                                     	@foreach($rosters as $roster)
                                         <tr>
-                                        	<td><img src="{{asset('uploads/'.$roster->photo ) }}" alt="{{ $roster->first_name }} &nbsp {{ $roster->last_name}}"  height="42"></td>
+                                        	<td><img src="{{asset('uploads/'.$roster->photo ) }}" height="42"></td>
                                             <td class="jersey">{{ $roster->jersey }}</td>
                                             <td class="first_name">{{ $roster->first_name }}</td>
                                             <td class="position">{{ $roster->position}}</td>
+                                            <td class="level">{{ $levels[$roster->level_id - 1]->name}}</td>
+                                            <td class="position">{{ $years[$roster->year_id]}}</td>
                                             <td> <button type="button" class="btn btn-primary btn-sm use-address" data-id="{{ $roster->id}}" data-toggle="modal" data-target="#myModal">Edit</button></td>
                                             <td> {!! Form::open([    'method' => 'DELETE','route' => ['rosters.destroy', $roster->id]]) !!}{!! Form::submit('Delete', ['class' => 'btn btn-danger btn-sm']) !!}{!! Form::close() !!}</td>
                                             <td class="id" style="display: none;"  />{{ $roster->id}}</td>
@@ -92,7 +97,23 @@
 @stop
 
 @section('footer')
+    <script type="text/javascript">
+        $('#sport_id').select2();
+        $('#level_id').select2();
+        $('#year_id').select2();
+        $('#height_feet').select2({
+            placeholder: "Select height in feet",
+        });
+        $('#height_inches').select2({
+            placeholder: "Select height in inches",
+        });
+        $('#weight').select2({
+            placeholder: "Select weight",
+        });
+
+    </script>
     <script src="/dist/js/sb-rosters-2.js"></script>
+
           @if ($errors->has())
 
               <script>

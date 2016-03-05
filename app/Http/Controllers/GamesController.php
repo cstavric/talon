@@ -153,6 +153,7 @@ class GamesController extends Controller
         if ($file['game_invisible_action'] == 'add')
         {
             $rules = array('opponent' => 'required',
+                'game_location_id' => 'required',
                 'game_date' => 'required',
                 'home_or_away' => 'required',
                 'game_invisible_action' => 'required',

@@ -16,16 +16,19 @@ $(window).load(function(){
 
     $("#add_new").click(function() {
         console.log($(".selected_level_id").text());
-        $('#sport_id').val($(".selected_sport_id").text());
-        $('#level_id').val($(".selected_level_id").text());
+        $('#sport_id').val($(".selected_sport_id").text()).change();;
+        $('#level_id').val($(".selected_level_id").text()).change();;
 
         document.getElementById('invisible_id').value="";
         document.getElementById('first_name').value="" ;
         document.getElementById('jersey').value="";
         document.getElementById('position').value="" ;
-        document.getElementById('height_feet').value="" ;
-        document.getElementById('height_inches').value="";
-        document.getElementById('weight').value="" ;
+        //document.getElementById('height_feet').value="" ;
+        //document.getElementById('height_inches').value="";
+        //document.getElementById('weight').value="" ;
+        $('#height_feet').val('').change();
+        $('#height_inches').val('').change();
+        $('#weight').val('').change();
         document.getElementById('hometown').value="" ;
         document.getElementById('verse').value="" ;
         document.getElementById('food').value="" ;
@@ -40,6 +43,7 @@ $(window).load(function(){
     });
 
     $(".use-address").click(function() {
+
         var $row = $(this).closest("tr");    // Find the row
         var $first_name = $row.find(".first_name").text();
         var $jersey = $row.find(".jersey").text();
@@ -60,9 +64,13 @@ $(window).load(function(){
         document.getElementById('first_name').value=$first_name ;
         document.getElementById('jersey').value=$jersey ;
         document.getElementById('position').value=$position ;
-        document.getElementById('height_feet').value=$height_feet ;
-        document.getElementById('height_inches').value=$height_inches ;
-        document.getElementById('weight').value=$weight ;
+        //document.getElementById('height_feet').val=$height_feet ;
+        //document.getElementById('height_inches').value=$height_inches ;
+        //document.getElementById('weight').value=$weight ;
+        $('#height_feet').val($height_feet).change();
+        $('#height_inches').val($height_inches).change();
+        $('#weight').val($weight).change();
+
         document.getElementById('hometown').value=$hometown ;
         document.getElementById('verse').value=$verse ;
         document.getElementById('food').value=$food ;

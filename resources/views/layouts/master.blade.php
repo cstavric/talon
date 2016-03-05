@@ -20,6 +20,10 @@
     "stylesheet" type="text/css">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
     <link rel="stylesheet" href="/css/bootstrap-datetimepicker.css">
+
+    {{--Select2.js fancy select look js--}}
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.2-rc.1/css/select2.min.css" rel="stylesheet" />
+
     
 
     
@@ -275,6 +279,14 @@
                             Staff</a>
                         </li>
                         <li>
+                            <a href="/schools"><i class="fa fa-edit fa-fw"></i>
+                                Opponents</a>
+                        </li>
+                        <li>
+                            <a href="/locations"><i class="fa fa-edit fa-fw"></i>
+                                Schedule Locations</a>
+                        </li>
+                        <li>
                             <a href="#"><i class="fa fa-sitemap fa-fw"></i>
                             Fall Sports<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
@@ -286,7 +298,7 @@
                                             <a href="/rosters/1">Roster</a>
                                         </li>
                                         <li>
-                                            <a href="/games/1">Games</a>
+                                            <a href="/games/1">Schedules</a>
                                         </li>
                                     </ul><!-- /.nav-third-level -->
                                 </li>
@@ -472,6 +484,8 @@
         <script src="/js/bootstrap-datetimepicker.js"></script>
 
         <script src="/dist/js/sb-admin-2.js"></script>
+        <script src="http://www.kryogenix.org/code/browser/sorttable/sorttable.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.2-rc.1/js/select2.min.js"></script>
         @yield('footer')
     </div>
 </body>

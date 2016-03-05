@@ -17,6 +17,7 @@ use App\Http\Controllers\Controller;
 
 class RostersController extends Controller
 {
+    private $order_jersey = '';
     /**
      * Display a listing of the resource.
      *
@@ -72,17 +73,28 @@ class RostersController extends Controller
      */
     public function show($sport_id)
     {
+        $sortby = Input::get('sortby');
+        $order = Input::get('order');
+        if ($sortby == "jersey" || $this->order_jersey == '')
+        {
+            $this->order_jersey = 'DESC';
+            $rosters = Roster::where('sport_id', '=', $sport_id)->orderBy('jersey', $this->order_jersey)->get();
+        }
+        else
+        {
+            dd($this->order_jersey);
+            $this->order_jersey = 'ASC';
+            $rosters = Roster::where('sport_id', '=', $sport_id)->orderBy('jersey', $this->order_jersey)->get();
+        }
 
-        $type = Sport::where('id', $sport_id)->first();
-
-        $rosters = Roster::where('sport_id', '=', $sport_id)->orderBy('jersey', 'DESC')->get();
+            $type = Sport::where('id', $sport_id)->first();
         $sports = Sport::lists('name', 'id');
         $levels = Level::all();
         $levelcreate = Level::lists('name', 'id');
         $years = Year::lists('name', 'id');
         $id_sport = $sport_id;
 
-        return view('rosters.show', compact('sports', 'levels', 'years', 'levelcreate', 'id_sport'))->withRosters($rosters)->with('type', $type);
+        return view('rosters.show', compact('sports', 'levels', 'years', 'levelcreate', 'id_sport', 'sortby', 'order'))->withRosters($rosters)->with('type', $type);
     }
 
     public function filter($sport_id, $level_id)
@@ -139,7 +151,7 @@ class RostersController extends Controller
         if ($file['invisible_action'] == 'edit') {
             // setting up rules
             $rules = array('first_name' => 'required|min:3',
-                'jersey' => 'required',
+                'jersey' => 'required|max:2',
                 'position' => 'required',
                 'heightfeet' => 'required',
                 'heightinches' => 'required',
@@ -153,7 +165,7 @@ class RostersController extends Controller
             ); //mimes:jpeg,bmp,png and for max size max:10000
         } else {
             $rules = array('first_name' => 'required|min:3',
-                'jersey' => 'required',
+                'jersey' => 'required|max:2',
                 'position' => 'required',
                 'heightfeet' => 'required',
                 'heightinches' => 'required',

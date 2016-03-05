@@ -5,9 +5,7 @@
 
     <h1>{{ $type->name }} Roster</h1>
     <p class="lead">{{ $lev->name }}&nbsp;
-        <button type="button" id="add_new" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal">Add
-            Player?
-        </button>
+        <button type="button" id="add_new" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal">Add Player?</button>
 
     </p>
 
@@ -47,15 +45,18 @@
 
         <div class="panel panel-primary">
             <div class="table-responsive">
-                <table class="table table-hover">
-                    <thead style="background-color:#337AB7; color:white">
+                <table class="table table-hover sortable" id="myTable">
+                    <thead  style="background-color:#337AB7; color:white">
                     <tr>
-                        <th></th>
-                        <th>Jersey</th>
-                        <th>Name</th>
-                        <th>Position</th>
-                        <th>&nbsp;</th>
-                        <th>&nbsp;</th>
+                        <th class="sorttable_nosort"></th>
+                        {{--<td> {!! Form::open([    'method' => 'put','route' => ['rosters.show', $id_sport]]) !!}{{ Form::hidden('sortby', 'jersey') }}{!! Form::submit('Jersy', ['class' => 'btn btn-danger btn-sm']) !!}{!! Form::close() !!}</td>--}}
+                        <th style="cursor: pointer;">Jersey</th>
+                        <th style="cursor: pointer;">Name</th>
+                        <th style="cursor: pointer;">Position</th>
+                        <th style="cursor: pointer;">Level</th>
+                        <th style="cursor: pointer;">Year</th>
+                        <th style="cursor: pointer;" class="sorttable_nosort">&nbsp;</th>
+                        <th style="cursor: pointer;" class="sorttable_nosort">&nbsp;</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -67,30 +68,23 @@
                             <td class="jersey">{{ $roster->jersey }}</td>
                             <td class="first_name">{{ $roster->first_name }}</td>
                             <td class="position">{{ $roster->position}}</td>
+                            <td class="level">{{ $levels[$roster->level_id - 1]->name}}</td>
+                            <td class="position">{{ $years[$roster->year_id]}}</td>
                             <td>
                                 <button type="button" class="btn btn-primary btn-sm use-address"
                                         data-id="{{ $roster->id}}" data-toggle="modal" data-target="#myModal">Edit
                                 </button>
                             </td>
                             <td> {!! Form::open([    'method' => 'DELETE','route' => ['rosters.destroy', $roster->id]]) !!}{!! Form::submit('Delete', ['class' => 'btn btn-danger btn-sm']) !!}{!! Form::close() !!}</td>
-                            <td class="id" style="display: none;"/>
-                            {{ $roster->id}}</td>
-                            <td class="height_feet" style="display: none;"/>
-                            {{ $roster->height_feet}}</td>
-                            <td class="height_inches" style="display: none;"/>
-                            {{ $roster->height_inches}}</td>
-                            <td class="weight" style="display: none;"/>
-                            {{ $roster->weight}}</td>
-                            <td class="hometown" style="display: none;"/>
-                            {{ $roster->hometown}}</td>
-                            <td class="verse" style="display: none;"/>
-                            {{ $roster->verse}}</td>
-                            <td class="food" style="display: none;"/>
-                            {{ $roster->food}}</td>
-                            <td class="years_at_sfc" style="display: none;"/>
-                            {{ $roster->years_at_sfc}}</td>
-                            <td class="image_name" style="display: none;"/>
-                            {{ $roster->photo}}</td>
+                            <td class="id" style="display: none;"/>{{ $roster->id}}</td>
+                            <td class="height_feet" style="display: none;"/>{{ $roster->height_feet}}</td>
+                            <td class="height_inches" style="display: none;"/>{{ $roster->height_inches}}</td>
+                            <td class="weight" style="display: none;"/>{{ $roster->weight}}</td>
+                            <td class="hometown" style="display: none;"/>{{ $roster->hometown}}</td>
+                            <td class="verse" style="display: none;"/>{{ $roster->verse}}</td>
+                            <td class="food" style="display: none;"/>{{ $roster->food}}</td>
+                            <td class="years_at_sfc" style="display: none;"/>{{ $roster->years_at_sfc}}</td>
+                            <td class="image_name" style="display: none;"/>{{ $roster->photo}}</td>
                         </tr>
                     @endforeach
 
@@ -113,6 +107,22 @@
         @include('rosters.modals.rosters_form')
 
 @section('footer')
+    <script type="text/javascript">
+        $('#sport_id').select2();
+        $('#level_id').select2();
+        $('#year_id').select2();
+        $('#height_feet').select2({
+            placeholder: "Select height in feet",
+        });
+        $('#height_inches').select2({
+            placeholder: "Select height in inches",
+        });
+        $('#weight').select2({
+            placeholder: "Select weight",
+        });
+
+    </script>
+    <script src="/dist/js/sb-rosters-2.js"></script>
     @if ($errors->has())
 
         <script>
