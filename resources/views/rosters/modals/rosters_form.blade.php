@@ -105,7 +105,7 @@
                         <div class="form-group-sm">
                             <div class="col-s-3">
                                 {!! Form::label('title', 'Weight:', ['class' => 'control-label']) !!}
-                                {{ Form::select('weight', ['0','1','2','3','4','5','6','7','8','9','10','11'], null, ['class' => 'form-control','id' => 'weight', 'style' => 'width: 100%']) }}
+                                {{ Form::select('weight',$weight_options, null, ['class' => 'form-control','id' => 'weight', 'style' => 'width: 100%']) }}
                             </div>
                         </div>
                     </div>

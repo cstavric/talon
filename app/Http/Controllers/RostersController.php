@@ -73,6 +73,9 @@ class RostersController extends Controller
      */
     public function show($sport_id)
     {
+        for ($i = 50; $i <= 400; $i++)
+        { $weight_options["$i"] = "$i"; }
+
         $sortby = Input::get('sortby');
         $order = Input::get('order');
         if ($sortby == "jersey" || $this->order_jersey == '')
@@ -94,12 +97,13 @@ class RostersController extends Controller
         $years = Year::lists('name', 'id');
         $id_sport = $sport_id;
 
-        return view('rosters.show', compact('sports', 'levels', 'years', 'levelcreate', 'id_sport', 'sortby', 'order'))->withRosters($rosters)->with('type', $type);
+        return view('rosters.show', compact('sports', 'levels', 'years','weight_options', 'levelcreate', 'id_sport', 'sortby', 'order'))->withRosters($rosters)->with('type', $type);
     }
 
     public function filter($sport_id, $level_id)
-
     {
+        for ($i = 50; $i <= 400; $i++)
+        { $weight_options["$i"] = "$i"; }
 
         if ($level_id == 'all')
             $rosters = Roster::where('sport_id', '=', $sport_id)->orderBy('jersey', 'DESC')->get();
@@ -114,7 +118,7 @@ class RostersController extends Controller
         $levels = Level::all();
         $years = Year::lists('name', 'id');
         $id_sport = $sport_id;
-        return view('rosters.filter', compact('sports', 'levels', 'years', 'lev', 'levelcreate', 'id_sport'))->withRosters($rosters)->with('type', $type);
+        return view('rosters.filter', compact('sports', 'levels', 'years','weight_options', 'lev', 'levelcreate', 'id_sport'))->withRosters($rosters)->with('type', $type);
     }
 
 

@@ -46,23 +46,23 @@
 
         <div class="panel panel-primary">
             <div class="table-responsive">
-                <table class="table table-hover">
+                <table class="table table-hover sortable">
                     <thead  style="background-color:#337AB7; color:white">
                     <tr>
-                        <th>&nbsp;</th>
-                        <th>Oponent</th>
-                        <th>Date Time</th>
-                        <th>Home/Away</th>
+                        <th class="sorttable_nosort">&nbsp;</th>
+                        <th style="cursor: pointer;">Oponent</th>
+                        <th style="cursor: pointer;">Date Time</th>
+                        <th style="cursor: pointer;">Home/Away</th>
                         @if($show_games == '2' || $show_games == '0')
-                            <th>Our Score</th>
-                            <th>Opponents Score</th>
+                            <th style="cursor: pointer;">Our Score</th>
+                            <th style="cursor: pointer;">Opponents Score</th>
                          @else
-                            <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
-                            <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                            <th class="sorttable_nosort">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                            <th class="sorttable_nosort">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
                         @endif
 
                         {!! Form::open(array('url'=>'games/'.$id_sport.'/filter/'.$lev['id'], 'method'=>'put')) !!}
-                        <th colspan="2">{!! Form::select('games_select',['All Events','Future Events','Past Events'], $show_games, ['class' => 'form-control', 'id'=> 'games_select', 'onchange' => 'this.form.submit()']) !!}</th>
+                        <th colspan="2" class="sorttable_nosort">{!! Form::select('games_select',['All Events','Future Events','Past Events'], $show_games, ['class' => 'form-control', 'id'=> 'games_select', 'onchange' => 'this.form.submit()']) !!}</th>
                         {!! Form::close() !!}
                     </tr>
                     </thead>
@@ -120,7 +120,18 @@
 @stop
 
 @section('footer')
+    <script type="text/javascript">
+        $('#game_sport_id').select2();
+        $('#game_level_id').select2();
+        $('#game_location_id').select2();
+        $('#opponent').select2({
+            placeholder: "Select opponent",
+        });
+        $('#home_or_away').select2({
+            placeholder: "Select home or away",
+        });
 
+    </script>
     <script src="/dist/js/sb-games-2.js"></script>
     <script type="text/javascript">
         $(function () {
