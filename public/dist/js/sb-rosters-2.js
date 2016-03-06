@@ -8,6 +8,10 @@ $(window).load(function(){
         }
         else
         {
+            //$('#height_feet').val('').change();
+            //$('#height_inches').val('').change();
+            //$('#weight').val('').change();
+            //$('#position').val('').change();
             $('#photo').hide();
             $(".form_title").text("Add player");
             $(".submit_roster_modal").val("Add player");
@@ -15,14 +19,14 @@ $(window).load(function(){
     }
 
     $("#add_new").click(function() {
-        console.log($(".selected_level_id").text());
         $('#sport_id').val($(".selected_sport_id").text()).change();;
         $('#level_id').val($(".selected_level_id").text()).change();;
 
         document.getElementById('invisible_id').value="";
         document.getElementById('first_name').value="" ;
         document.getElementById('jersey').value="";
-        document.getElementById('position').value="" ;
+        //document.getElementById('position').value="" ;
+        $('#position').val('').change();
         //document.getElementById('height_feet').value="" ;
         //document.getElementById('height_inches').value="";
         //document.getElementById('weight').value="" ;
@@ -63,7 +67,8 @@ $(window).load(function(){
         document.getElementById('invisible_id').value=$(this).data('id') ;
         document.getElementById('first_name').value=$first_name ;
         document.getElementById('jersey').value=$jersey ;
-        document.getElementById('position').value=$position ;
+        //document.getElementById('position').value=$position ;
+        $('#position').val($position).change();
         //document.getElementById('height_feet').val=$height_feet ;
         //document.getElementById('height_inches').value=$height_inches ;
         //document.getElementById('weight').value=$weight ;

@@ -63,7 +63,7 @@
                                             <td class="first_name">{{ $roster->first_name }}</td>
                                             <td class="position">{{ $roster->position}}</td>
                                             <td class="level">{{ $levels[$roster->level_id - 1]->name}}</td>
-                                            <td class="position">{{ $years[$roster->year_id]}}</td>
+                                            <td class="year">{{ $years[$roster->year_id]}}</td>
                                             <td> <button type="button" class="btn btn-primary btn-sm use-address" data-id="{{ $roster->id}}" data-toggle="modal" data-target="#myModal">Edit</button></td>
                                             <td> {!! Form::open([    'method' => 'DELETE','route' => ['rosters.destroy', $roster->id]]) !!}{!! Form::submit('Delete', ['class' => 'btn btn-danger btn-sm']) !!}{!! Form::close() !!}</td>
                                             <td class="id" style="display: none;"  />{{ $roster->id}}</td>
@@ -101,6 +101,7 @@
         $('#sport_id').select2();
         $('#level_id').select2();
         $('#year_id').select2();
+        $('#position').select2();
         $('#height_feet').select2({
             placeholder: "Select height in feet",
         });
@@ -112,6 +113,26 @@
         });
 
     </script>
+    @if ($errors->has('position'))
+        <script type="text/javascript">
+            $('#position').val('').change();
+        </script>
+    @endif
+    @if ($errors->has('heightfeet'))
+        <script type="text/javascript">
+            $('#height_feet').val('').change();
+        </script>
+    @endif
+    @if ($errors->has('heightinches'))
+        <script type="text/javascript">
+            $('#height_inches').val('').change();
+        </script>
+    @endif
+    @if ($errors->has('weight'))
+        <script type="text/javascript">
+            $('#weight').val('').change();
+        </script>
+    @endif
     <script src="/dist/js/sb-rosters-2.js"></script>
 
           @if ($errors->has())

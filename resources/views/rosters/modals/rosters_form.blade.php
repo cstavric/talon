@@ -69,7 +69,7 @@
                         <div class="form-group-sm">
                             <div class="col-s-3">
                                 {!! Form::label('title', 'Position:', ['class' => 'control-label']) !!}
-                                {!! Form::text('position', null, ['class' => 'form-control', 'id'=> 'position']) !!}
+                                {{ Form::select('position',$positions, null, ['class' => 'form-control','id' => 'position', 'style' => 'width: 100%']) }}
                             </div>
                         </div>
                     </div>
@@ -150,7 +150,6 @@
                                 <br>
                                 @if ($errors->has())
                                     <div class="alert alert-danger">
-
 
                                         @foreach(Session::get('message') as $er)
                                             {{ $er }} <br>

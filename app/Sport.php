@@ -13,5 +13,10 @@ class Sport extends Model
         return $this->hasMany('Roster', 'sport_id');
     }
 
+    public function positions()
+    {
+        return $this->hasMany('App\Positions');
+    }
+
 
 }

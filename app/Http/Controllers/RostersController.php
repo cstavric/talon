@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\RostersUploadRequest;
+use App\Positions;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
@@ -17,7 +18,6 @@ use App\Http\Controllers\Controller;
 
 class RostersController extends Controller
 {
-    private $order_jersey = '';
     /**
      * Display a listing of the resource.
      *
@@ -76,28 +76,17 @@ class RostersController extends Controller
         for ($i = 50; $i <= 400; $i++)
         { $weight_options["$i"] = "$i"; }
 
-        $sortby = Input::get('sortby');
-        $order = Input::get('order');
-        if ($sortby == "jersey" || $this->order_jersey == '')
-        {
-            $this->order_jersey = 'DESC';
-            $rosters = Roster::where('sport_id', '=', $sport_id)->orderBy('jersey', $this->order_jersey)->get();
-        }
-        else
-        {
-            dd($this->order_jersey);
-            $this->order_jersey = 'ASC';
-            $rosters = Roster::where('sport_id', '=', $sport_id)->orderBy('jersey', $this->order_jersey)->get();
-        }
+        $rosters = Roster::where('sport_id', '=', $sport_id)->orderBy('jersey', 'DESC')->get();
+        $positions = Positions::where('sport_id', '=', $sport_id)->lists('name', 'id');
 
-            $type = Sport::where('id', $sport_id)->first();
+        $type = Sport::where('id', $sport_id)->first();
         $sports = Sport::lists('name', 'id');
         $levels = Level::all();
         $levelcreate = Level::lists('name', 'id');
         $years = Year::lists('name', 'id');
         $id_sport = $sport_id;
 
-        return view('rosters.show', compact('sports', 'levels', 'years','weight_options', 'levelcreate', 'id_sport', 'sortby', 'order'))->withRosters($rosters)->with('type', $type);
+        return view('rosters.show', compact('sports', 'levels', 'years', 'positions','weight_options', 'levelcreate', 'id_sport', 'sortby', 'order'))->withRosters($rosters)->with('type', $type);
     }
 
     public function filter($sport_id, $level_id)
@@ -113,12 +102,12 @@ class RostersController extends Controller
         $type = Sport::where('id', $sport_id)->first();
         $lev = Level::where('id', $level_id)->first();
         $levelcreate = Level::lists('name', 'id');
-
+        $positions = Positions::where('sport_id', '=', $sport_id)->lists('name', 'id');
         $sports = Sport::lists('name', 'id');
         $levels = Level::all();
         $years = Year::lists('name', 'id');
         $id_sport = $sport_id;
-        return view('rosters.filter', compact('sports', 'levels', 'years','weight_options', 'lev', 'levelcreate', 'id_sport'))->withRosters($rosters)->with('type', $type);
+        return view('rosters.filter', compact('sports', 'levels', 'years','positions', 'weight_options', 'lev', 'levelcreate', 'id_sport'))->withRosters($rosters)->with('type', $type);
     }
 
 
