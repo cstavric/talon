@@ -141,9 +141,11 @@ class RostersController extends Controller
         // getting all of the post data
         $file = Input::all();
 
+
         if ($file['invisible_action'] == 'edit') {
             // setting up rules
             $rules = array('first_name' => 'required|min:3',
+                'last_name' => 'required',
                 'jersey' => 'required|max:2',
                 'position' => 'required',
                 'heightfeet' => 'required',
@@ -154,10 +156,10 @@ class RostersController extends Controller
                 'food' => 'required',
                 'sfc' => 'required',
                 'invisible_image' => 'required',
-                'invisible_action' => 'required'
             ); //mimes:jpeg,bmp,png and for max size max:10000
         } else {
             $rules = array('first_name' => 'required|min:3',
+                'last_name' => 'required',
                 'jersey' => 'required|max:2',
                 'position' => 'required',
                 'heightfeet' => 'required',
@@ -167,7 +169,6 @@ class RostersController extends Controller
                 'bible' => 'required',
                 'food' => 'required',
                 'sfc' => 'required',
-                'invisible_action' => 'required',
                 'image' => 'required'
             );
         }
@@ -179,8 +180,10 @@ class RostersController extends Controller
 
             //setting errors message
             Session::flash('message', $validator->errors()->all());
-
-
+            if(isset($file['position']))
+            Session(['poss' => $file['position']]);
+            else
+                Session(['poss' => '']);
             // send back to the page with the input data and errors
             return Redirect::back()->withInput()->withErrors($validator);
             //->with(['error_code' => 5,'roster' => $file]);
@@ -198,7 +201,7 @@ class RostersController extends Controller
                     // sending back with message
 
                     //update rooster with new image
-                    Roster::where('id', '=', $file['invisible_id'])->first()->update(['first_name' => $file['first_name'], 'photo' => $fileName,
+                    Roster::where('id', '=', $file['invisible_id'])->first()->update(['first_name' => $file['first_name'], 'last_name' => $file['last_name'], 'photo' => $fileName,
                         'jersey' => $file['jersey'], 'position' => $file['position'], 'height_feet' => $file['heightfeet'],
                         'height_inches' => $file['heightinches'], 'weight' => $file['weight'], 'hometown' => $file['hometown'],
                         'verse' => $file['bible'], 'food' => $file['food'], 'years_at_sfc' => $file['sfc']]);
@@ -210,7 +213,7 @@ class RostersController extends Controller
 
                 } else {
                     //update rooster without new image
-                    Roster::where('id', '=', $file['invisible_id'])->first()->update(['first_name' => $file['first_name'],
+                    Roster::where('id', '=', $file['invisible_id'])->first()->update(['first_name' => $file['first_name'], 'last_name' => $file['last_name'],
                         'jersey' => $file['jersey'], 'position' => $file['position'], 'height_feet' => $file['heightfeet'],
                         'height_inches' => $file['heightinches'], 'weight' => $file['weight'], 'hometown' => $file['hometown'],
                         'verse' => $file['bible'], 'food' => $file['food'], 'years_at_sfc' => $file['sfc']]);
@@ -228,7 +231,7 @@ class RostersController extends Controller
                     Input::file('image')->move($destinationPath, $fileName); // uploading file to given path
 
                     Roster::create(array('sport_id' => $file['sport_id'], 'level_id' => $file['level_id'], 'year_id' => $file['year_id'],
-                        'first_name' => $file['first_name'], 'photo' => $fileName,
+                        'first_name' => $file['first_name'], 'last_name' => $file['last_name'],  'photo' => $fileName,
                         'jersey' => $file['jersey'], 'position' => $file['position'], 'height_feet' => $file['heightfeet'],
                         'height_inches' => $file['heightinches'], 'weight' => $file['weight'], 'hometown' => $file['hometown'],
                         'verse' => $file['bible'], 'food' => $file['food'], 'years_at_sfc' => $file['sfc']));
@@ -237,7 +240,7 @@ class RostersController extends Controller
                     return Redirect::back();
                 } else {
                     Roster::create(array('sport_id' => $file['sport_id'], 'level_id' => $file['level_id'], 'year_id' => $file['year_id'],
-                        'first_name' => $file['first_name'],
+                        'first_name' => $file['first_name'], 'last_name' => $file['last_name'],
                         'jersey' => $file['jersey'], 'position' => $file['position'], 'height_feet' => $file['heightfeet'],
                         'height_inches' => $file['heightinches'], 'weight' => $file['weight'], 'hometown' => $file['hometown'],
                         'verse' => $file['bible'], 'food' => $file['food'], 'years_at_sfc' => $file['sfc']));
@@ -268,4 +271,11 @@ class RostersController extends Controller
 
         return redirect()->back();
     }
+
+    public function getPositions($sport_id)
+    {
+        $positions = Positions::where('sport_id', '=', $sport_id)->lists('name', 'id');
+        return $positions;
+    }
+
 }
