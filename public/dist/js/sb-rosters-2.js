@@ -1,13 +1,34 @@
 $(window).load(function(){
+
     if(document.getElementById('invisible_action') != null)
     {
         if(document.getElementById('invisible_action').value == 'edit')
         {
 
             $(".select_sport").hide();
+
         }
-        else
+        else if(document.getElementById('invisible_action').value == 'add')
         {
+            console.log($(".poss").text());
+            var $sport_id = $('#sport_id');
+            var $position = $("#position");
+            $sport_id.select2().on('change', function()
+            {
+                $.ajax({
+                    url:"/sport/api/"+$sport_id.val(),
+                    type:'GET',
+                    success:function(data) {
+                        $position.empty();
+                        $.each(data, function(value, key) {
+                            $position.append($("<option></option>").attr("value", value).text(key)); // name refers to the objects value when you do you ->lists('name', 'id') in laravel
+                        });
+                        $position.select2(); //reload the list and select the first option
+                        $position.val($(".poss").text()).change();
+                    }
+                });
+            }).trigger('change');
+
             //$('#height_feet').val('').change();
             //$('#height_inches').val('').change();
             //$('#weight').val('').change();
@@ -19,11 +40,32 @@ $(window).load(function(){
     }
 
     $("#add_new").click(function() {
-        $('#sport_id').val($(".selected_sport_id").text()).change();;
-        $('#level_id').val($(".selected_level_id").text()).change();;
+        $('#sport_id').val($(".selected_sport_id").text()).change();
+        $('#level_id').val($(".selected_level_id").text()).change();
+
+        var $sport_id = $('#sport_id');
+        var $position = $("#position");
+        $sport_id.select2().on('change', function()
+        {
+            $.ajax({
+                url:"/sport/api/"+$sport_id.val(),
+                type:'GET',
+                success:function(data) {
+                    $position.empty();
+                    $.each(data, function(value, key) {
+                        $position.append($("<option></option>").attr("value", value).text(key)); // name refers to the objects value when you do you ->lists('name', 'id') in laravel
+                    });
+                    $position.select2(); //reload the list and select the first option
+                    $position.val('').change();
+                }
+            });
+        }).trigger('change');
+
+
 
         document.getElementById('invisible_id').value="";
         document.getElementById('first_name').value="" ;
+        document.getElementById('last_name').value="" ;
         document.getElementById('jersey').value="";
         //document.getElementById('position').value="" ;
         $('#position').val('').change();
@@ -48,8 +90,25 @@ $(window).load(function(){
 
     $(".use-address").click(function() {
 
+        var $position1 = $("#position");
+        console.log($(".selected_sport_id").text());
+        $.ajax({
+            url:"/sport/api/"+$(".selected_sport_id").text(),
+            type:'GET',
+            success:function(data) {
+                $position1.empty();
+                $.each(data, function(value, key) {
+                    $position1.append($("<option></option>").attr("value", value).text(key)); // name refers to the objects value when you do you ->lists('name', 'id') in laravel
+                });
+                $position1.select2(); //reload the list and select the first option
+                console.log($(".position").text());
+                $position1.val($(".position").text()).change();
+            }
+        });
+
         var $row = $(this).closest("tr");    // Find the row
         var $first_name = $row.find(".first_name").text();
+        var $last_name = $row.find(".last_name").text();
         var $jersey = $row.find(".jersey").text();
         var $position = $row.find(".position").text();
         var $height_feet = $row.find(".height_feet").text();
@@ -66,6 +125,7 @@ $(window).load(function(){
         $('#photo').show();
         document.getElementById('invisible_id').value=$(this).data('id') ;
         document.getElementById('first_name').value=$first_name ;
+        document.getElementById('last_name').value=$last_name ;
         document.getElementById('jersey').value=$jersey ;
         //document.getElementById('position').value=$position ;
         $('#position').val($position).change();
@@ -88,7 +148,24 @@ $(window).load(function(){
         //document.getElementById('photo').src=$photo ;
         // Let's test it out
         //alert($text+ ' ' +$shit);
+        var $position1 = $("#position");
+        $.ajax({
+            url:"/sport/api/"+$row.find(".sport_id").text(),
+            type:'GET',
+            success:function(data) {
+                $position1.empty();
+                $.each(data, function(value, key) {
+                    $position1.append($("<option></option>").attr("value", value).text(key)); // name refers to the objects value when you do you ->lists('name', 'id') in laravel
+                });
+                $position1.select2(); //reload the list and select the first option
+                $position1.val($position).change();
+            }
+        });
+
     });
+
+
+
 });//]]>
 
 

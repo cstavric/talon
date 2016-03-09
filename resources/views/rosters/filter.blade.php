@@ -21,7 +21,9 @@
             @endif
         @endforeach
     </ul>
-
+    @if(session()->has('poss'))
+        <div class="poss" style="display: none;"  >{{session('poss')}}</div>
+    @endif
     <br>
     <div class="selected_sport_id" style="display: none;">{{ $type->id }}</div>
     @if (session()->has('success'))
@@ -66,7 +68,7 @@
                             <td><img src="{{asset('uploads/'.$roster->photo ) }}"
                                      alt="{{ $roster->first_name }} &nbsp {{ $roster->last_name}}" height="42"></td>
                             <td class="jersey">{{ $roster->jersey }}</td>
-                            <td class="first_name">{{ $roster->first_name }}</td>
+                            <td class="name">{{ $roster->first_name }} {{ $roster->last_name }}</td>
                             <td class="position">{{ $roster->position}}</td>
                             <td class="level">{{ $levels[$roster->level_id - 1]->name}}</td>
                             <td class="year">{{ $years[$roster->year_id]}}</td>
@@ -77,6 +79,8 @@
                             </td>
                             <td> {!! Form::open([    'method' => 'DELETE','route' => ['rosters.destroy', $roster->id]]) !!}{!! Form::submit('Delete', ['class' => 'btn btn-danger btn-sm']) !!}{!! Form::close() !!}</td>
                             <td class="id" style="display: none;"/>{{ $roster->id}}</td>
+                            <td class="first_name" style="display: none;"  />{{ $roster->first_name}}</td>
+                            <td class="last_name" style="display: none;"  />{{ $roster->last_name}}</td>
                             <td class="height_feet" style="display: none;"/>{{ $roster->height_feet}}</td>
                             <td class="height_inches" style="display: none;"/>{{ $roster->height_inches}}</td>
                             <td class="weight" style="display: none;"/>{{ $roster->weight}}</td>

@@ -11,7 +11,7 @@
 |
 */
 
-Route::group(['middleware' => ['web']], function () {
+Route::group(['middleware' => ['auth']], function () {
     Route::get('joe/{order_id}/{other_id}', 'RostersController@specific');
     Route::get('/', [
         'as' => 'home',
@@ -32,7 +32,7 @@ Route::group(['middleware' => ['web']], function () {
 //Route::get('rosters/{sport_id}/edit/{id}', 'RostersController@loadModal');
 
 
-Route::group(['middleware' => ['web']], function () {
+Route::group(['middleware' => ['auth']], function () {
     Route::get('rosters/{sport_id}/filter/{level_id}', 'RostersController@filter');
     Route::post('rosters/{sport_id}', 'RostersController@update');
     Route::put('rosters/{sport_id}', 'RostersController@show');
@@ -53,6 +53,11 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::resource('locations', 'LocationsController');
 
-
+    Route::get('sport/api/{sport_id}', 'RostersController@getPositions');
     //
 });
+
+Route::controllers([
+    'auth' => 'Auth\AuthController',
+    'password' => 'Auth\PasswordController',
+]);

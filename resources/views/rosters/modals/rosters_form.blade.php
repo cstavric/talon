@@ -32,7 +32,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="form-group select_sport">
                     {!! Form::label('title', 'Sport:', ['class' => 'control-label']) !!}
                     {{ Form::select('sport_id', $sports, null, ['class' => 'form-control', 'id' => 'sport_id', 'style' => 'width: 100%']) }}
@@ -54,7 +53,16 @@
                             </div>
                         </div>
                     </div>
-
+                    <div class="col-md-6">
+                        <div class="form-group-sm">
+                            <div class="col-s-3">
+                                {!! Form::label('title', 'Last Name:', ['class' => 'control-label']) !!}
+                                {!! Form::text('last_name', null, ['class' => 'form-control', 'id'=> 'last_name']) !!}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
                     <div class="col-md-6">
                         <div class="form-group-sm">
                             <div class="col-s-3">
@@ -63,8 +71,6 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="row">
                     <div class="col-md-6">
                         <div class="form-group-sm">
                             <div class="col-s-3">
@@ -73,6 +79,8 @@
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="row">
                     <div class="col-md-6">
                         <div class="form-group-sm">
                             <div class="col-s-3">
@@ -81,8 +89,6 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="row">
                     <div class="col-md-6">
                         <div class="form-group-sm">
                             <div class="col-s-3">
@@ -91,6 +97,8 @@
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="row">
                     <div class="col-md-6">
                         <div class="form-group-sm">
                             <div class="col-s-3">
@@ -99,8 +107,6 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="row">
                     <div class="col-md-6">
                         <div class="form-group-sm">
                             <div class="col-s-3">
@@ -109,6 +115,8 @@
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="row">
                     <div class="col-md-6">
                         <div class="form-group-sm">
                             <div class="col-s-3">
@@ -117,8 +125,6 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="row">
                     <div class="col-md-6">
                         <div class="form-group-sm">
                             <div class="col-s-3">
@@ -172,3 +178,4 @@
             </div>
         </div>
     </div>
+</div>

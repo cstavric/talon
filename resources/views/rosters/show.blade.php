@@ -17,7 +17,9 @@
     @endforeach
 </ul>
 
-
+@if(session()->has('poss'))
+    <div class="poss" style="display: none;"  >{{session('poss')}}</div>
+@endif
 <br>
 	<div class="selected_level_id" style="display: none;"  >1</div>
     <div class="selected_sport_id" style="display: none;"  >{{ $type->id }}</div>
@@ -60,13 +62,16 @@
                                         <tr>
                                         	<td><img src="{{asset('uploads/'.$roster->photo ) }}" height="42"></td>
                                             <td class="jersey">{{ $roster->jersey }}</td>
-                                            <td class="first_name">{{ $roster->first_name }}</td>
-                                            <td class="position">{{ $roster->position}}</td>
+                                            <td class="name">{{ $roster->first_name }} {{ $roster->last_name }}</td>
+                                            <td class="pos">{{ $positions[$roster->position]}}</td>
                                             <td class="level">{{ $levels[$roster->level_id - 1]->name}}</td>
                                             <td class="year">{{ $years[$roster->year_id]}}</td>
                                             <td> <button type="button" class="btn btn-primary btn-sm use-address" data-id="{{ $roster->id}}" data-toggle="modal" data-target="#myModal">Edit</button></td>
                                             <td> {!! Form::open([    'method' => 'DELETE','route' => ['rosters.destroy', $roster->id]]) !!}{!! Form::submit('Delete', ['class' => 'btn btn-danger btn-sm']) !!}{!! Form::close() !!}</td>
                                             <td class="id" style="display: none;"  />{{ $roster->id}}</td>
+                                            <td class="position" style="display: none;">{{$roster->position}}</td>
+                                            <td class="first_name" style="display: none;"  />{{ $roster->first_name}}</td>
+                                            <td class="last_name" style="display: none;"  />{{ $roster->last_name}}</td>
                                             <td class="height_feet" style="display: none;"  />{{ $roster->height_feet}}</td>
                                             <td class="height_inches" style="display: none;"  />{{ $roster->height_inches}}</td>
                                             <td class="weight" style="display: none;"  />{{ $roster->weight}}</td>
@@ -99,6 +104,7 @@
 @section('footer')
     <script type="text/javascript">
         $('#sport_id').select2();
+
         $('#level_id').select2();
         $('#year_id').select2();
         $('#position').select2();
@@ -134,7 +140,6 @@
         </script>
     @endif
     <script src="/dist/js/sb-rosters-2.js"></script>
-
           @if ($errors->has())
 
               <script>

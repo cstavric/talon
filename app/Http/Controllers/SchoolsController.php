@@ -33,17 +33,17 @@ class SchoolsController extends Controller
             'name' => 'required',
             'short_name' => 'required',
             'mascot_name' => 'required',
-            'bio' => 'required',
+            'bio' => '',
             'adress' => 'required',
             'city' => 'required',
             'state' => 'required',
             'zip' => 'required',
-            'phone' => 'required',
-            'website' => 'required',
-            'facebook' => 'required',
-            'instagram' => 'required',
-            'youtube' => 'required',
-            'vimeo' => 'required'
+            'phone' => '',
+            'website' => '',
+            'facebook' => '',
+            'instagram' => '',
+            'youtube' => '',
+            'vimeo' => ''
         );
 
         $validator = Validator::make(Input::all(), $rules);
