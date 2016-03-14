@@ -1,5 +1,26 @@
 $(window).load(function(){
 
+    $('#photo').hide();
+    $(".form_title").text("Add player");
+    $(".submit_roster_modal").val("Add player");
+    var $sport_id = $('#sport_id');
+    var $position = $("#position");
+    $sport_id.select2().on('change', function()
+    {
+        $.ajax({
+            url:"/sport/api/"+$sport_id.val(),
+            type:'GET',
+            success:function(data) {
+                $position.empty();
+                $.each(data, function(value, key) {
+                    $position.append($("<option></option>").attr("value", value).text(key)); // name refers to the objects value when you do you ->lists('name', 'id') in laravel
+                });
+                $position.select2(); //reload the list and select the first option
+                $position.val($(".poss").text()).change();
+            }
+        });
+    }).trigger('change');
+
     if(document.getElementById('invisible_action') != null)
     {
         if(document.getElementById('invisible_action').value == 'edit')

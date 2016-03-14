@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Location;
+use Carbon\Carbon;
 use DateTime;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
@@ -150,6 +151,9 @@ class GamesController extends Controller
 
         // getting all of the post data
         $file = Input::all();
+//        $tz = new Carbon ($file['game_date']);
+//        $tz->setTimezone('Europe/London');
+//        dd($tz);
         if ($file['game_invisible_action'] == 'add')
         {
             $rules = array('opponent' => 'required',

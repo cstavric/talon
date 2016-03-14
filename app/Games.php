@@ -28,4 +28,9 @@ class Games extends Model
     {
         return $this->belongsTo('App\School');
     }
+
+    public function news()
+    {
+        return $this->belongsTo('App\News');
+    }
 }

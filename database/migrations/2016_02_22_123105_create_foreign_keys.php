@@ -47,6 +47,10 @@ class CreateForeignKeys extends Migration
                 ->references('id')->on('years')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
+            $table->foreign('position')
+                ->references('id')->on('positions')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
         });
 
         Schema::table('schools', function(Blueprint $table)
@@ -61,6 +65,14 @@ class CreateForeignKeys extends Migration
                 ->onUpdate('cascade');
             $table->foreign('district_id')
                 ->references('id')->on('districts')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+        });
+
+        Schema::table('positions', function(Blueprint $table)
+        {
+            $table->foreign('sport_id')
+                ->references('id')->on('sports')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
         });

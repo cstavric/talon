@@ -51,6 +51,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('schools/', 'SchoolsController@show');
     Route::resource('schools', 'SchoolsController');
 
+    Route::get('news/{sport_id}', 'NewsController@show');
+    Route::resource('news', 'SchoolsController');
+
     Route::resource('locations', 'LocationsController');
 
     Route::get('sport/api/{sport_id}', 'RostersController@getPositions');
