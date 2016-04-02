@@ -19,12 +19,10 @@ class CreateNewsTable extends Migration
             $table->string('image', 50)->nullable();
             $table->string('author', 50)->nullable();
             $table->date('news_date')->nullable();
-            $table->integer('sport_id')->nullable()->index('sport_id');
             $table->string('category', 50)->nullable();
             $table->string('intro', 50)->nullable();
             $table->string('content', 4500)->nullable();
-            $table->string('link', 50)->nullable();
-            $table->string('tags', 50)->nullable();
+            $table->string('link', 125)->nullable();
             $table->timestamps();
         });
     }

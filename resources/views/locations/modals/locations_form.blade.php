@@ -37,7 +37,7 @@
                         <div class="form-group-sm">
                             <div class="col-s-3">
                                 {!! Form::label('title', 'Address :', ['class' => 'control-label']) !!}
-                                {!! Form::text('adress', null, ['class' => 'form-control', 'id'=> 'adress']) !!}
+                                {!! Form::text('adress', null, ['class' => 'form-control', 'id'=> 'adress', 'required'=> 'true']) !!}
                             </div>
                         </div>
                     </div>
@@ -47,7 +47,7 @@
                         <div class="form-group-sm">
                             <div class="col-s-3">
                                 {!! Form::label('title', 'City:', ['class' => 'control-label']) !!}
-                                {!! Form::text('city', null, ['class' => 'form-control', 'id'=> 'city']) !!}
+                                {!! Form::text('city', null, ['class' => 'form-control', 'id'=> 'city', 'required'=> 'true']) !!}
                             </div>
                         </div>
                     </div>
@@ -55,7 +55,7 @@
                         <div class="form-group-sm">
                             <div class="col-s-3">
                                 {!! Form::label('title', 'State:', ['class' => 'control-label']) !!}
-                                {!! Form::text('state', null, ['class' => 'form-control', 'id'=> 'state']) !!}
+                                {!! Form::text('state', null, ['class' => 'form-control', 'id'=> 'state', 'required'=> 'true']) !!}
                             </div>
                         </div>
                     </div>
@@ -65,7 +65,7 @@
                         <div class="form-group-sm">
                             <div class="col-s-3">
                                 {!! Form::label('title', 'Zip:', ['class' => 'control-label']) !!}
-                                {!! Form::text('zip', null, ['class' => 'form-control', 'id'=> 'zip']) !!}
+                                {!! Form::text('zip', null, ['class' => 'form-control', 'id'=> 'zip', 'required'=> 'true']) !!}
                             </div>
                         </div>
                     </div>
@@ -73,7 +73,7 @@
                         <div class="form-group-sm">
                             <div class="col-s-3">
                                 {!! Form::label('title', 'Latitude:', ['class' => 'control-label']) !!}
-                                {!! Form::text('lat', null, ['class' => 'form-control', 'id'=> 'lat']) !!}
+                                {!! Form::text('lat', null, ['class' => 'form-control', 'id'=> 'lat', 'required'=> 'true']) !!}
                             </div>
                         </div>
                     </div>
@@ -83,7 +83,7 @@
                         <div class="form-group-sm">
                             <div class="col-s-3">
                                 {!! Form::label('title', 'Longitude:', ['class' => 'control-label']) !!}
-                                {!! Form::text('lon', null, ['class' => 'form-control', 'id'=> 'lon']) !!}
+                                {!! Form::text('lon', null, ['class' => 'form-control', 'id'=> 'lon', 'required'=> 'true']) !!}
                             </div>
                         </div>
                     </div>

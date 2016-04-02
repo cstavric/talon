@@ -76,6 +76,7 @@ class CreateForeignKeys extends Migration
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
         });
+
     }
 
     /**

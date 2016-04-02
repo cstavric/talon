@@ -63,7 +63,7 @@
                                         	<td><img src="{{asset('uploads/'.$roster->photo ) }}" height="42"></td>
                                             <td class="jersey">{{ $roster->jersey }}</td>
                                             <td class="name">{{ $roster->first_name }} {{ $roster->last_name }}</td>
-                                            <td class="pos">{{ $positions[$roster->position]}}</td>
+                                            <td class="pos">@if($roster->position != null) {{ $positions[$roster->position]}} @endif</td>
                                             <td class="level">{{ $levels[$roster->level_id - 1]->name}}</td>
                                             <td class="year">{{ $years[$roster->year_id]}}</td>
                                             <td> <button type="button" class="btn btn-primary btn-sm use-address" data-id="{{ $roster->id}}" data-toggle="modal" data-target="#myModal">Edit</button></td>

@@ -1,4 +1,5 @@
 $(window).load(function(){
+
     if(document.getElementById('game_invisible_action').value != "")
     {
         if(document.getElementById('game_invisible_action').value == 'edit')
@@ -73,6 +74,10 @@ $(window).load(function(){
         //document.getElementById('jersey').value=$jersey ;
         var d1 = new Date();
         var d2 = new Date($row.find(".game_date").text().replace(' ', 'T'));
+        var offset = new Date().getTimezoneOffset();
+        //console.log(offset);
+        //d2.setHours(d2.getHours() + (offset/60));
+        //console.log(d2);
         if(d1>d2)
         {
             $('.past_game').css('display','block');

@@ -8,20 +8,33 @@ class News extends Model
 {
     protected $table = 'news';
     protected $fillable = [
-        'sport_id',
         'title',
         'image',
         'author',
         'news_date',
         'category',
-        'info',
         'content',
-        'url',
-        'tags'
+        'intro',
+        'link'
     ];
+
+    public function sports()
+    {
+        return $this->belongsToMany('App\Sport');
+    }
+
+    public function levels()
+    {
+        return $this->belongsToMany('App\Level');
+    }
+
+    public function rosters()
+    {
+        return $this->belongsToMany('App\Roster');
+    }
 
     public function games()
     {
-        return $this->hasMany('App\Games');
+        return $this->belongsToMany('App\Games');
     }
 }

@@ -46,7 +46,7 @@ $(window).load(function(){
         document.getElementById('location_invisible_id').value=$id;
         document.getElementById('name').value=$name;
         document.getElementById('adress').value=$adress;
-        document.getElementById('city').value=$city ;
+        document.getElementById('city').value=$city;
         document.getElementById('state').value=$state ;
         document.getElementById('zip').value=$zip ;
         document.getElementById('lat').value=$lat ;

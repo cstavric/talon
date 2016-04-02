@@ -55,6 +55,7 @@
                     </thead>
                     <tbody>
                     @foreach($games as $game)
+                        {{--{{ dd($game->game_date) }}--}}
                         <tr>
                             <td><img src="{{asset('uploads/schools/'.$school_logo[$game->opponents_id] ) }}" height="42"></td>
                             <td> {{ $school_names[$game->opponents_id]}}</td>
@@ -67,7 +68,6 @@
                                 <td class="sorttable_nosort">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
                                 <td class="sorttable_nosort">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
                             @endif
-
 
                             <td> <button type="button" class="btn btn-primary btn-sm edit_new_game" data-id="{{ $game->id}}" data-toggle="modal" data-target="#gameModal">Edit</button></td>
                             <td> {!! Form::open([    'method' => 'DELETE','route' => ['games.destroy', $game->id]]) !!}{!! Form::submit('Delete', ['class' => 'btn btn-danger btn-sm']) !!}{!! Form::close() !!}</td>
@@ -129,7 +129,7 @@
     <script src="/dist/js/sb-games-2.js"></script>
     <script type="text/javascript">
         $(function () {
-            $('#game_date').datetimepicker({format: "YYYY/MM/DD HH:mm:ss"});
+            $('#game_date').datetimepicker({format: "YYYY-MM-DD HH:mm:ss"});
         });
     </script>
     @if ($errors->has())

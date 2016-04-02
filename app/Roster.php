@@ -26,6 +26,11 @@ public function level()
     return $this->belongsTo('App\Level', 'level_id');
 }
 
+    public function news()
+    {
+        return $this->belongsToMany('App\News');
+    }
+
 	protected $fillable = [
         'sport_id',
         'level_id',

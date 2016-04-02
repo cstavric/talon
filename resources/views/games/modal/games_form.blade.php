@@ -36,11 +36,11 @@
 
                 <div class="form-group select_sport">
                     {!! Form::label('title', 'Sport:', ['class' => 'control-label']) !!}
-                    {{ Form::select('game_sport_id', $sports, null, ['class' => 'form-control', 'id' => 'game_sport_id', 'style' => 'width: 100%']) }}
+                    {{ Form::select('game_sport_id', $sports, null, ['class' => 'form-control', 'id' => 'game_sport_id', 'style' => 'width: 100%', 'required'=> 'true']) }}
                     {!! Form::label('title', 'Level:', ['class' => 'control-label']) !!}
-                    {{ Form::select('game_level_id', $levelcreate, null, ['class' => 'form-control', 'id' => 'game_level_id', 'style' => 'width: 100%']) }}
+                    {{ Form::select('game_level_id', $levelcreate, null, ['class' => 'form-control', 'id' => 'game_level_id', 'style' => 'width: 100%', 'required'=> 'true']) }}
                     {!! Form::label('title', 'Location:', ['class' => 'control-label']) !!}
-                    {{ Form::select('game_location_id', $locations, null, ['class' => 'form-control', 'id' => 'game_location_id', 'style' => 'width: 100%']) }}
+                    {{ Form::select('game_location_id', $locations, null, ['class' => 'form-control', 'id' => 'game_location_id', 'style' => 'width: 100%', 'required'=> 'true']) }}
 
                 </div>
                 <div class="row">
@@ -50,7 +50,7 @@
                                 {{ Form::hidden('game_invisible_id', null, ['id' => 'game_invisible_id']) }}
 
                                 {!! Form::label('title', 'Opponent:', ['class' => 'control-label']) !!}
-                                {!! Form::select('opponent',$opponents, null, ['class' => 'form-control', 'id'=> 'opponent', 'style' => 'width: 100%']) !!}
+                                {!! Form::select('opponent',$opponents, null, ['class' => 'form-control', 'id'=> 'opponent', 'style' => 'width: 100%', 'required'=> 'true']) !!}
                             </div>
                         </div>
                     </div>
@@ -60,7 +60,7 @@
                             <div class="col-s-3">
                                 {!! Form::label('title', 'Game date:', ['class' => 'control-label']) !!}
                                 {{--{!! Form::input('game_date', "", ['class' => 'form-control', 'id'=> 'game_date', 'placeholder '=> 'YYYY-MM-DD']) !!}--}}
-                                {{ Form::text('game_date', '', array('class'=>'form-control','id' => 'game_date')) }}
+                                {{ Form::text('game_date', '', array('class'=>'form-control','id' => 'game_date' , 'required'=> 'true')) }}
 
                         </div>
                     </div>
@@ -72,14 +72,14 @@
                         <div class="form-group-sm">
                             <div class="col-s-3">
                                 {!! Form::label('title', 'Home or away:', ['class' => 'control-label']) !!}
-                                {!! Form::select('home_or_away',['home'=>'home','away'=>'away'], null, ['class' => 'form-control', 'id'=> 'home_or_away', 'style' => 'width: 100%']) !!}
+                                {!! Form::select('home_or_away',['home'=>'home','away'=>'away'], null, ['class' => 'form-control', 'id'=> 'home_or_away', 'style' => 'width: 100%', 'required'=> 'true']) !!}
                             </div>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group-s future_game">
                             <div class="col-s-3">
-                                {!! Form::label('title', 'Game preview:', ['class' => 'control-label']) !!}
+                                {!! Form::label('title', 'Game preview:', ['class' => 'control-label', 'required'=> 'true']) !!}
                                 {!! Form::textarea('game_preview', null, ['class' => 'form-control', 'id'=> 'game_preview']) !!}
                             </div>
                         </div>

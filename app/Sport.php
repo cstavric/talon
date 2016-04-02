@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Sport extends Model
 {
-
+    protected $table = 'sports';
 
     public function roster()
     {
@@ -16,6 +16,11 @@ class Sport extends Model
     public function positions()
     {
         return $this->hasMany('App\Positions');
+    }
+
+    public function news()
+    {
+        return $this->belongsToMany('App\News');
     }
 
 

@@ -18,10 +18,10 @@ class CreateRostersTable extends Migration {
 			$table->integer('sport_id')->nullable()->index('sport_id');
 			$table->integer('level_id')->nullable()->index('level_id');
 			$table->integer('year_id')->nullable()->index('year_id');
+			$table->integer('position')->nullable()->index('position');
 			$table->string('first_name', 20)->nullable();
 			$table->string('last_name', 20)->nullable();
 			$table->string('jersey', 5)->nullable();
-			$table->string('position', 10)->nullable();
 			$table->integer('height_feet')->nullable();
 			$table->integer('height_inches')->nullable();
 			$table->integer('weight')->nullable();

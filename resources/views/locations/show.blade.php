@@ -51,7 +51,7 @@
                             <td> {!! Form::open([    'method' => 'DELETE','route' => ['locations.destroy', $location->id]]) !!}{!! Form::submit('Delete', ['class' => 'btn btn-danger btn-sm']) !!}{!! Form::close() !!}</td>
                             <td class="id" style="display: none;"  />{{ $location->id}}</td>
                             <td class="adress" style="display: none;"  />{{  $location->adress}}</td>
-                            <td class="city" style="display: none;"  />{{ $location->city}}</td>
+
                             <td class="state" style="display: none;"  />{{ $location->state}}</td>
                             <td class="zip" style="display: none;"  />{{ $location->zip}}</td>
                             <td class="lat" style="display: none;"  />{{ $location->lat}}</td>

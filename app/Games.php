@@ -23,6 +23,7 @@ class Games extends Model
         'our_score',
         'opponents_score'
     ];
+    protected $dates = ['game_date'];
 
     public function schools()
     {
@@ -31,6 +32,7 @@ class Games extends Model
 
     public function news()
     {
-        return $this->belongsTo('App\News');
+        return $this->belongsToMany('App\News');
     }
+
 }

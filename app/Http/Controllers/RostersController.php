@@ -146,32 +146,44 @@ class RostersController extends Controller
             // setting up rules
             $rules = array('first_name' => 'required|min:3',
                 'last_name' => 'required',
-                'jersey' => 'required|max:2',
-                'position' => 'required',
+                'jersey' => 'max:2',
+                'position' => '',
                 'heightfeet' => 'required',
                 'heightinches' => 'required',
-                'weight' => 'required',
-                'hometown' => 'required',
-                'bible' => 'required',
-                'food' => 'required',
-                'sfc' => 'required',
+                'weight' => '',
+                'hometown' => '',
+                'bible' => '',
+                'food' => '',
+                'sfc' => '',
                 'invisible_image' => 'required',
             ); //mimes:jpeg,bmp,png and for max size max:10000
         } else {
             $rules = array('first_name' => 'required|min:3',
                 'last_name' => 'required',
-                'jersey' => 'required|max:2',
-                'position' => 'required',
+                'jersey' => 'max:2',
+                'position' => '',
                 'heightfeet' => 'required',
                 'heightinches' => 'required',
-                'weight' => 'required',
-                'hometown' => 'required',
-                'bible' => 'required',
-                'food' => 'required',
-                'sfc' => 'required',
-                'image' => 'required'
+                'weight' => '',
+                'hometown' => '',
+                'bible' => '',
+                'food' => '',
+                'sfc' => '',
+                'image' => ''
             );
         }
+        if(!isset($file['position']))
+            $file['position']= null;
+        if(!isset($file['weight']))
+            $file['weight']= '';
+        if(!isset($file['hometown']))
+            $file['hometown']= '';
+        if(!isset($file['bible']))
+            $file['bible']= '';
+        if(!isset($file['food']))
+            $file['food']= '';
+        if(!isset($file['sfc']))
+            $file['sfc']= '';
         // doing the validation, passing post data, rules and the messages
         $validator = Validator::make(Input::all(), $rules);
 

@@ -48,7 +48,7 @@
                             <div class="col-s-3">
                                 {{ Form::hidden('invisible_id', null, ['id' => 'invisible_id']) }}
 
-                                {!! Form::label('title', 'Name:', ['class' => 'control-label']) !!}
+                                {!! Form::label('title', 'First Name:', ['class' => 'control-label']) !!}
                                 {!! Form::text('first_name', null, ['class' => 'form-control', 'id'=> 'first_name', 'required'=> 'true']) !!}
                             </div>
                         </div>
@@ -57,7 +57,7 @@
                         <div class="form-group-sm">
                             <div class="col-s-3">
                                 {!! Form::label('title', 'Last Name:', ['class' => 'control-label']) !!}
-                                {!! Form::text('last_name', null, ['class' => 'form-control', 'id'=> 'last_name']) !!}
+                                {!! Form::text('last_name', null, ['class' => 'form-control', 'id'=> 'last_name', 'required'=> 'true']) !!}
                             </div>
                         </div>
                     </div>
@@ -67,7 +67,7 @@
                         <div class="form-group-sm">
                             <div class="col-s-3">
                                 {!! Form::label('title', 'Jersey:', ['class' => 'control-label']) !!}
-                                {!! Form::text('jersey', null, ['class' => 'form-control', 'id'=> 'jersey']) !!}
+                                {!! Form::text('jersey', null, ['class' => 'form-control', 'id'=> 'jersey', 'maxlength'=>'2']) !!}
                             </div>
                         </div>
                     </div>
@@ -93,7 +93,7 @@
                         <div class="form-group-sm">
                             <div class="col-s-3">
                                 {!! Form::label('title', 'Height(Feet):', ['class' => 'control-label']) !!}
-                                {{ Form::select('heightfeet', ['4' => '4','5' => '5','6' => '6','7' => '7'], null, ['class' => 'form-control','id' => 'height_feet', 'style' => 'width: 100%']) }}
+                                {{ Form::select('heightfeet', ['4' => '4','5' => '5','6' => '6','7' => '7'], null, ['class' => 'form-control','id' => 'height_feet', 'style' => 'width: 100%', 'required'=> 'true']) }}
                             </div>
                         </div>
                     </div>
@@ -103,7 +103,7 @@
                         <div class="form-group-sm">
                             <div class="col-s-3">
                                 {!! Form::label('title', 'Height(Inches):', ['class' => 'control-label']) !!}
-                                {{ Form::select('heightinches', ['0' => '0','1' => '1','2' => '2','3' => '3','4' => '4','5' => '5','6' => '6','7' => '7','8' => '8','9' => '9','10' => '10','11' => '11'], null, ['class' => 'form-control','id' => 'height_inches', 'style' => 'width: 100%']) }}
+                                {{ Form::select('heightinches', ['0' => '0','1' => '1','2' => '2','3' => '3','4' => '4','5' => '5','6' => '6','7' => '7','8' => '8','9' => '9','10' => '10','11' => '11'], null, ['class' => 'form-control','id' => 'height_inches', 'style' => 'width: 100%', 'required'=> 'true']) }}
                             </div>
                         </div>
                     </div>

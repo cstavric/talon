@@ -24,7 +24,6 @@ class GamesController extends Controller
     public function show($sport_id)
     {
         $type = Sport::where('id', $sport_id)->first();
-
         $games = Games::where('sport_id', '=', $sport_id)->orderBy('game_date', 'DESC')->get();
         $sports = Sport::lists('name', 'id');
         $levels = Level::all();
@@ -147,7 +146,13 @@ class GamesController extends Controller
 
     public function update($sport_id)
     {
-
+//        $file = Input::all();
+//        dd(Carbon::now()->timezoneName);
+//        $userTimezone = new DateTimeZone('America/New_York');
+//        $gmtTimezone = new DateTimeZone('GMT');
+//        $myDateTime = new DateTime('2009-03-21 13:14', $gmtTimezone);
+//        $offset = $userTimezone->getOffset($myDateTime);
+//        echo $offset;
 
         // getting all of the post data
         $file = Input::all();

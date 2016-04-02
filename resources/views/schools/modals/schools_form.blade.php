@@ -49,7 +49,7 @@
                         <div class="form-group-sm">
                             <div class="col-s-3">
                                 {!! Form::label('title', 'Short name:', ['class' => 'control-label']) !!}
-                                {!! Form::text('short_name', null, ['class' => 'form-control', 'id'=> 'short_name']) !!}
+                                {!! Form::text('short_name', null, ['class' => 'form-control', 'id'=> 'short_name', 'required'=> 'true']) !!}
                             </div>
                         </div>
                     </div>
@@ -59,7 +59,7 @@
                         <div class="form-group-sm">
                             <div class="col-s-3">
                                 {!! Form::label('title', 'Mascot name:', ['class' => 'control-label']) !!}
-                                {!! Form::text('mascot_name', null, ['class' => 'form-control', 'id'=> 'mascot_name']) !!}
+                                {!! Form::text('mascot_name', null, ['class' => 'form-control', 'id'=> 'mascot_name', 'required'=> 'true']) !!}
                             </div>
                         </div>
                     </div>
@@ -77,7 +77,7 @@
                         <div class="form-group-sm">
                             <div class="col-s-3">
                                 {!! Form::label('title', 'Address :', ['class' => 'control-label']) !!}
-                                {!! Form::text('adress', null, ['class' => 'form-control', 'id'=> 'adress']) !!}
+                                {!! Form::text('adress', null, ['class' => 'form-control', 'id'=> 'adress', 'required'=> 'true']) !!}
                             </div>
                         </div>
                     </div>
@@ -85,7 +85,7 @@
                         <div class="form-group-sm">
                             <div class="col-s-3">
                                 {!! Form::label('title', 'City:', ['class' => 'control-label']) !!}
-                                {!! Form::text('city', null, ['class' => 'form-control', 'id'=> 'city']) !!}
+                                {!! Form::text('city', null, ['class' => 'form-control', 'id'=> 'city', 'required'=> 'true']) !!}
                             </div>
                         </div>
                     </div>
@@ -95,7 +95,7 @@
                         <div class="form-group-sm">
                             <div class="col-s-3">
                                 {!! Form::label('title', 'State:', ['class' => 'control-label']) !!}
-                                {!! Form::text('state', null, ['class' => 'form-control', 'id'=> 'state']) !!}
+                                {!! Form::text('state', null, ['class' => 'form-control', 'id'=> 'state', 'required'=> 'true']) !!}
                             </div>
                         </div>
                     </div>
@@ -103,7 +103,7 @@
                         <div class="form-group-sm">
                             <div class="col-s-3">
                                 {!! Form::label('title', 'Zip:', ['class' => 'control-label']) !!}
-                                {!! Form::text('zip', null, ['class' => 'form-control', 'id'=> 'zip']) !!}
+                                {!! Form::text('zip', null, ['class' => 'form-control', 'id'=> 'zip', 'required'=> 'true']) !!}
                             </div>
                         </div>
                     </div>
